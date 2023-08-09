@@ -10,7 +10,7 @@ export function DashBoardContainer() {
     return (
         <div style={{
             height:'100vh',
-            backgroundImage: "url(" + "/icons/new-wf.png" + ")",
+            backgroundImage: "url(" + "/icons/newwf.png" + ")",
             backgroundPosition: 'top',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat'
