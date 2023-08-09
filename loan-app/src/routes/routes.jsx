@@ -11,7 +11,7 @@ export const publicRoutes = [
     url: '/dash-board',
     component: DashBoardContainer,
     name: 'DashBoardContainer'
-  }
+  },
    { url: '/login',
     component: LoginPageContainer,
     name: 'LoginPageContainer'

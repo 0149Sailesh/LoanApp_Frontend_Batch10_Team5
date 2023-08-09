@@ -4,6 +4,8 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Navbar from 'react-bootstrap/Navbar';
+import SideMenu from '../components/SideMenu';
+import LoginNav from '../components/Navbar/LoginNav';
 export function DashBoardContainer() {
     return (
         <div style={{
@@ -13,11 +15,7 @@ export function DashBoardContainer() {
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat'
         }}>
-            <Navbar expand="lg" className="bg-body-tertiary d-flex justify-content-center">
-                <Container className='"d-flex justify-content-center'>
-                    <Navbar.Brand href="#home">Dash Board</Navbar.Brand>
-                </Container>
-            </Navbar>
+            <LoginNav></LoginNav>
             <div  className='mt-5 d-flex justify-content-center'>
                 <Card style={{ width: '18rem' }} className='p-4 m-4'>
                     <Card.Img variant="top" src="icons/loan-ig.png" height={140} className='px-5' />
@@ -52,7 +50,7 @@ export function DashBoardContainer() {
                         <Button className='mt-2 bg-danger text-warning border-0 fw-bold' variant="primary">View</Button>
                     </Card.Body>
                 </Card>
-
+                <SideMenu></SideMenu>
 
             </div>
         </div >
