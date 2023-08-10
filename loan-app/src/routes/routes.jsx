@@ -7,6 +7,7 @@ import { ViewCustomerContainer } from '../containers/ViewCustomerContainer';
 import RegisterPageContainer from '../containers/RegisterPageContainer';
 import LoanApplyContainer from '../containers/LoanApplyContainer';
 import AdminAddCustomerDataContainer from '../containers/AdminAddCustomerDataContainer';
+import AdminAddLoanCardContainer from '../containers/AdminAddLoanCardContainer';
 export const publicRoutes = [
 
   {
@@ -30,9 +31,7 @@ name: 'ViewCustomerContainer'
 url: '/view-items',
 component: ViewItemsContainer ,
 name: 'ViewCustomerContainer'
-}
-
-,
+},
   { url: '/register',
   component: RegisterPageContainer,
   name: 'RegisterPageContainer'
@@ -43,9 +42,14 @@ name: 'ViewCustomerContainer'
     name: 'LoanApplyContainer'
   },
   {
-    url: '/admin-customerData',
+    url: '/admin-AddCustomerData',
     component: AdminAddCustomerDataContainer,
     name : 'AdminCustomerDataContainer'
+  },
+  {
+    url: '/admin-AddLoanCard',
+    component: AdminAddLoanCardContainer,
+    name: 'AddAdminLoanCardContainer'
   }
 ];
 

@@ -61,7 +61,7 @@ function LoanApply() {
     
   </div>
     <div className={`${styles.buttonContainer}`}>
-    <button type="submit" class="btn text-warning bg-danger">Apply loan</button>
+    <button type="submit" class="btn text-warning fw-bold bg-danger">Apply loan</button>
     </div>
   
 </form>
