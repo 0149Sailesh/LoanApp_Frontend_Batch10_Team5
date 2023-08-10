@@ -1,9 +1,6 @@
 import React from 'react';
-//import { Homepage } from '../components/HomePage';
-import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Navbar from 'react-bootstrap/Navbar';
 import SideMenu from '../components/SideMenu';
 import LoginNav from '../components/Navbar/LoginNav';
 export function DashBoardContainer() {
@@ -18,9 +15,9 @@ export function DashBoardContainer() {
             <LoginNav></LoginNav>
             <div  className='mt-5 d-flex justify-content-center'>
                 <Card style={{ width: '18rem' }} className='p-4 m-4'>
-                    <Card.Img variant="top" src="icons/loan-ig.png" height={140} className='px-5' />
+                    <Card.Img variant="top" src="icons/customer.png" height={140} className='px-5' />
                     <Card.Body className='d-flex justify-content-center flex-column'>
-                        <Card.Title>View Loans</Card.Title>
+                        <Card.Title>Customer Data Management</Card.Title>
                         <Card.Text>
                             Some quick example text to build on the card title and make up the
                             bulk of the card's content.
@@ -29,9 +26,9 @@ export function DashBoardContainer() {
                     </Card.Body>
                 </Card>
                 <Card style={{ width: '18rem' }} className='p-4 m-4'>
-                    <Card.Img variant="top" src="icons/form-g.png" height={140} />
+                <Card.Img variant="top" src="icons/loan-ig.png" height={140} className='px-5' />
                     <Card.Body className='d-flex justify-content-center flex-column'>
-                        <Card.Title>Apply For Loans</Card.Title>
+                        <Card.Title>Loan Card Management</Card.Title>
                         <Card.Text>
                             Some quick example text to build on the card title and make up the
                             bulk of the card's content.
@@ -42,7 +39,7 @@ export function DashBoardContainer() {
                 <Card style={{ width: '18rem' }} className='p-4 m-4'>
                     <Card.Img variant="top" src="icons/cart.png" height={140} className='px-5' />
                     <Card.Body className='d-flex justify-content-center flex-column'>
-                        <Card.Title>View Items Purchased</Card.Title>
+                        <Card.Title> Items Master Data</Card.Title>
                         <Card.Text>
                             Some quick example text to build on the card title and make up the
                             bulk of the card's content.
