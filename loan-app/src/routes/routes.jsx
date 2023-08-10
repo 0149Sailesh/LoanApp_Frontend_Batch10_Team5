@@ -18,7 +18,7 @@ export const publicRoutes = [
     component: LoginPageContainer,
     name: 'LoginPageContainer'
   },
-<<<<<<< HEAD
+
   { url: '/view-loan',
   component: ViewLoanContainer,
   name: 'ViewLoanContainer'
@@ -32,7 +32,7 @@ component: ViewItemsContainer ,
 name: 'ViewCustomerContainer'
 }
 
-=======
+,
   { url: '/register',
   component: RegisterPageContainer,
   name: 'RegisterPageContainer'
@@ -47,7 +47,6 @@ name: 'ViewCustomerContainer'
     component: AdminAddCustomerDataContainer,
     name : 'AdminCustomerDataContainer'
   }
->>>>>>> 9ddbaea (feat: All admin features)
 ];
 
 export const privateRoutes = [];
