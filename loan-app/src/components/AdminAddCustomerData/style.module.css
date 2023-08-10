@@ -1,0 +1,33 @@
+.formContainer{
+   
+    width: 50%;
+}
+
+button{
+   
+    margin: 0 auto;
+}
+
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+}
+
+button{
+    margin-top: 30px;
+}
+
+.form-group{
+    margin-top: 30px;
+}
+
+.loanForm{
+    padding: 20px;
+    box-shadow: 10px 10px grey;
+    border: 0.2px solid black;
+}
+
+h2{
+    text-align: center;
+    padding: 25px;
+}

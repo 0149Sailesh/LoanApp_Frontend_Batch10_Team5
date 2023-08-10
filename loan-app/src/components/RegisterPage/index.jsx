@@ -2,16 +2,7 @@ import React from 'react'
 import LoginNav from '../Navbar/LoginNav'
 import SideMenu from '../SideMenu'
 import styles from './style.module.css'
-function LoginPage() {
-
-  const handleSubmit = (e) =>{
-    let formData = {
-      email : e.target.email.value,
-      password : e.target.password.value
-    }
-
-    console.log(formData)
-  }
+function RegisterPage() {
   return (
     <div>
         <LoginNav></LoginNav>
@@ -21,16 +12,20 @@ function LoginPage() {
             </div>
             <div>
                 <div className={`${styles.loginForm}`}>
-                <form onSubmit={handleSubmit} >
-                    <h3>Login</h3>
+                <form >
+                    <h3>Register</h3>
                 <div class="form-group">
                      <label for="exampleInputEmail1">Email address</label>
-    <input name="email" required type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
   </div>
-  <div class="form-group">
+  <div class="form-group" style={{marginTop:"10px"}}>
+  <label for="usr">Name:</label>
+  <input type="text" class="form-control" id="usr"/>
+  </div>
+  <div class="form-group" style={{marginTop: "10px"}}>
     <label for="exampleInputPassword1">Password</label>
-    <input name="password" required type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
   </div>
   <br></br>
     <div class="form-group">
@@ -46,4 +41,4 @@ function LoginPage() {
   )
 }
 
-export default LoginPage
+export default RegisterPage

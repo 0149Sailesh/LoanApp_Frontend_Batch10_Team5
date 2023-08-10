@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import SideMenu from '../components/SideMenu';
-import LoginNav from '../components/Navbar/LoginNav';
+import GeneralNav from '../components/Navbar/GeneralNav';
 export function DashBoardContainer() {
     return (
         <div style={{
@@ -12,7 +12,7 @@ export function DashBoardContainer() {
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat'
         }}>
-            <LoginNav></LoginNav>
+            <GeneralNav></GeneralNav>
             <div  className='mt-5 d-flex justify-content-center'>
                 <Card style={{ width: '18rem' }} className='p-4 m-4'>
                     <Card.Img variant="top" src="icons/customer.png" height={140} className='px-5' />
