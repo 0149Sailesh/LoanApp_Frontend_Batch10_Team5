@@ -60,7 +60,7 @@ export function ViewLoanTable() {
 
             for (let i of value) {
                 //console.log(i);
-                if (i.loanType.toLocaleLowerCase().includes(query.toLocaleLowerCase()))
+                if (i.loanType.toLocaleLowerCase().includes(query.toLocaleLowerCase())|| i.loadId.toLocaleLowerCase().includes(query.toLocaleLowerCase()))
                     res.push(i);
             }
             setDisplayValue(res);

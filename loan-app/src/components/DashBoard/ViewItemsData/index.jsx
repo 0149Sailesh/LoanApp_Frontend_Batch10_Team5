@@ -55,7 +55,7 @@ export function ViewItemsData() {
 
             for (let i of value) {
                 //console.log(i);
-                if (i.descrption.toLocaleLowerCase().includes(query.toLocaleLowerCase()))
+                if (i.descrption.toLocaleLowerCase().includes(query.toLocaleLowerCase())|| i.itemId.toLocaleLowerCase().includes(query.toLocaleLowerCase()))
                     res.push(i);
             }
             setDisplayValue(res);

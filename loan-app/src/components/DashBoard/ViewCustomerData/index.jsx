@@ -78,7 +78,7 @@ export function ViewCustomerData() {
 
             for (let i of value) {
                 //console.log(i);
-                if (i.employeeName.toLocaleLowerCase().includes(query.toLocaleLowerCase()))
+                if (i.employeeName.toLocaleLowerCase().includes(query.toLocaleLowerCase())|| i.employeeID.toLocaleLowerCase().includes(query.toLocaleLowerCase()))
                     res.push(i);
             }
             setDisplayValue(res);
