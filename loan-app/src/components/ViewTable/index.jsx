@@ -15,7 +15,7 @@ export function ViewTable({keys, values}) {
             <Table striped bordered hover responsive='md'>
                 <thead>
                     <tr>
-                        {keys.map(k=><th>{k}</th>)}
+                        {keys.map(k=><th key={Date.now()}>{k}</th>)}
                         {/* <th>Loan ID</th>
                         <th>Loan Type</th>
                         <th>Duration</th>
@@ -26,7 +26,7 @@ export function ViewTable({keys, values}) {
                 <tbody>
                     {values.map(value =>
                         <tr key={value[0]}>
-                            {value.map(x=> <td>{x}</td>)}
+                            {value.map(x=> <td key={Date.now()}>{x}</td>)}
                             <td className={styles.actions}>
                                 <button className={`bg-info text-white  ${styles.btnActions}`}>{'Edit'}</button>
                                 <button className={` bg-danger text-white ${styles.btnActions}`}>{'Delete'}</button>
