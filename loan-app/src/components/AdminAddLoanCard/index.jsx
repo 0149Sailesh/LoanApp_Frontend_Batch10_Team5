@@ -20,12 +20,18 @@ function AdminAddLoanCard() {
       console.log(formData)
   }
   return (
-    <div>
+    <div  style={{
+
+      height: '100vh',
+      backgroundImage: "url(" + "/icons/newwf.png" + ")",
+      backgroundPosition: 'top',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat'}}>
       <GeneralNav></GeneralNav>
       <SideMenu></SideMenu>
-
-    <div className={`container ${styles.formContainer}`}>
       <h2 class="text-warning">Loan Card Master Data Details</h2>
+    <div className={`container ${styles.formContainer}`}>
+    
       <form className={`${styles.loanForm}`} onSubmit={handleSubmit}>
   
     <div class="form-group">
@@ -42,7 +48,7 @@ function AdminAddLoanCard() {
   </div>
   <br></br>
   <div class="row">
-  <div class="form-group col-md-5 justify-content-center">
+  <div class="form-group col-md-12 justify-content-center">
     <label for="inputAddress">Duration</label>
     <input required type="number" name="duration" class="form-control" id="inputAddress" placeholder="1"/>
   </div>

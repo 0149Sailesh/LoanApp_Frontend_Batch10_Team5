@@ -20,12 +20,18 @@ function LoanApply() {
       console.log(formData)
   }
   return (
-    <div>
+    <div  style={{
+
+      height: '100vh',
+      backgroundImage: "url(" + "/icons/newwf.png" + ")",
+      backgroundPosition: 'top',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat'}}>
       <GeneralNav></GeneralNav>
       <SideMenu></SideMenu>
-
-    <div className={`container ${styles.formContainer}`}>
       <h2 class="text-warning">Loan Application</h2>
+    <div className={`container ${styles.formContainer}`}>
+    
       <form className={`${styles.loanForm}`} onSubmit={handleSubmit}>
   <div class="row">
     <div class="form-group col-md-6">

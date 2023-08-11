@@ -1,8 +1,10 @@
 .formContainer{
-    margin-top: 25px;
-    width: 30%;
-}
-
+    background-color: #EC6A6C;
+     width: 30%;
+     border-radius: 5px;
+     box-shadow: #A4161A 0px 8px 24px;
+ }
+ 
 button{
    
     margin: 0 auto;
@@ -23,8 +25,7 @@ button{
 
 .loanForm{
     padding: 20px;
-    box-shadow: 10px 10px grey;
-    border: 0.2px solid black;
+   
 }
 
 h2{
