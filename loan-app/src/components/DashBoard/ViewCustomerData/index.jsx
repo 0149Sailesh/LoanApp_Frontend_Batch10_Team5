@@ -5,9 +5,10 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { ViewTable } from '../../ViewTable';
 let value = [
     {
-        id: 1,
+        
         employeeID: 'L001',
         employeeName: 'Raja',
         designatio: 'Program associate',
@@ -18,7 +19,7 @@ let value = [
 
 
     },  {
-      id: 2,
+     
       employeeID: 'L002',
       employeeName: 'Rja',
       designatio: 'Program associate',
@@ -30,7 +31,7 @@ let value = [
 
   },
   {
-    id: 3,
+    
     employeeID: 'L0011',
     employeeName: 'Akash',
     designatio: 'Program associate',
@@ -42,7 +43,7 @@ let value = [
 
 },
 {
-  id: 4,
+  
   employeeID: 'L0201',
   employeeName: 'Manu',
   designatio: 'Program associate',
@@ -54,7 +55,7 @@ let value = [
 
 },
   {
-        id: 5,
+
         employeeID: 'L0021',
         employeeName: 'Kumar',
         designatio: 'Program associate',
@@ -66,10 +67,24 @@ let value = [
 
     },
 ]
+let keys=['Employee ID', 'Employee Name', 'Designation', 'Department', 'Birth Date' , 'Join Date', 'Gender', 'Actions']
 
 export function ViewCustomerData() {
+    function ObjectToArray(val){
+        let res=[];
+        for (let i of val){
+            res.push(Object.values(i));
+        }
+        setDisplayValue(res);
+        console.log(res)
+    }
 
-    const [displayValue, setDisplayValue] = useState(value)
+
+    const [displayValue, setDisplayValue] = useState([])
+    useEffect(() => {
+     
+        ObjectToArray(value);
+      }, []);
 
 
     function search(query) {
@@ -79,13 +94,13 @@ export function ViewCustomerData() {
             for (let i of value) {
                 //console.log(i);
                 if (i.employeeName.toLocaleLowerCase().includes(query.toLocaleLowerCase())|| i.employeeID.toLocaleLowerCase().includes(query.toLocaleLowerCase()))
-                    res.push(i);
+                    res.push(Object.values(i));
             }
-            setDisplayValue(res);
+            setDisplayValue(res)
 
         }
         else {
-            setDisplayValue(value)
+                    ObjectToArray(value);
         }
 
         console.log(res)
@@ -108,41 +123,7 @@ export function ViewCustomerData() {
                 <button className={`bg-danger text-warning fw-bold ${styles.btn}`}>{'<'}</button>
                 <button className={`bg-danger text-warning fw-bold ${styles.btn}`}>{'>'}</button>
             </div>
-
-            <Table striped bordered hover responsive='md'>
-                <thead>
-                    <tr>
-                        <th>Employee ID</th>
-                        <th>Employee Name</th>
-                        <th>Designation</th>
-                        <th>Department</th>
-                        <th>Gender</th>
-                        <th>  Birth Date </th>
-                        <th>Joining Date</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {displayValue.map(x =>
-                        <tr key={x.id}>
-                            <td>{x.employeeID}</td>
-                            <td>{x.employeeName}</td>
-                            <td>{x.designatio}</td>
-                            <td>{x.department}</td>
-                            <td>{x.gender}</td>
-                            <td>{x.birthDate}</td>
-                            <td>{x.joinDate}</td>
-
-                            <td className={styles.actions}>
-                                <button className={`bg-info text-white  ${styles.btnActions}`}>{'Edit'}</button>
-                                <button className={` bg-danger text-white ${styles.btnActions}`}>{'Delete'}</button>
-                            </td>
-                        </tr>
-                    )
-
-                    }
-                </tbody>
-            </Table>
+    <ViewTable keys={keys} values={displayValue}/>
         </div>
     );
 }

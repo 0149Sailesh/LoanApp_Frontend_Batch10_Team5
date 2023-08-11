@@ -5,9 +5,10 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { ViewTable } from '../../ViewTable';
 let value = [
     {
-        id: 1,
+       
         itemId: 'L001',
         descrption: 'Hammer',
         status: ' associate',
@@ -15,7 +16,7 @@ let value = [
         valuation:'2000',
      Category:'Home',
     },  {
-        id: 2,
+        
         itemId: 'L2001',
         descrption: 'Hat',
         status: ' associate',
@@ -24,7 +25,7 @@ let value = [
      Category:'Home',
     }, 
     {
-        id: 3,
+        
         itemId: 'L009',
         descrption: 'Cooker',
         status: ' associate',
@@ -33,7 +34,7 @@ let value = [
      Category:'Home',
     }, 
     {
-        id: 4,
+        
         itemId: 'L0201',
         descrption: 'Dog',
         status: ' associate',
@@ -43,10 +44,24 @@ let value = [
     }, 
 
 ]
-
+let keys=['Item ID', 'Descrption', 'Status', 'Make', 'Valuation', 'Category', 'Actions']
 export function ViewItemsData() {
 
-    const [displayValue, setDisplayValue] = useState(value)
+    function ObjectToArray(val){
+        let res=[];
+        for (let i of val){
+            res.push(Object.values(i));
+        }
+        setDisplayValue(res);
+        console.log(res)
+    }
+
+
+    const [displayValue, setDisplayValue] = useState([])
+    useEffect(() => {
+     
+        ObjectToArray(value);
+      }, []);
 
 
     function search(query) {
@@ -56,19 +71,17 @@ export function ViewItemsData() {
             for (let i of value) {
                 //console.log(i);
                 if (i.descrption.toLocaleLowerCase().includes(query.toLocaleLowerCase())|| i.itemId.toLocaleLowerCase().includes(query.toLocaleLowerCase()))
-                    res.push(i);
+                    res.push(Object.values(i));
             }
-            setDisplayValue(res);
+            setDisplayValue(res)
 
         }
         else {
-            setDisplayValue(value)
+                    ObjectToArray(value);
         }
 
         console.log(res)
     }
-
-
 
     return (
         <div className='container'>
@@ -86,40 +99,7 @@ export function ViewItemsData() {
                 <button className={`bg-danger text-warning fw-bold ${styles.btn}`}>{'>'}</button>
             </div>
 
-            <Table striped bordered hover responsive='md'>
-                <thead>
-                    <tr>
-                        <th>Item ID</th>
-                        <th> Description</th>
-                        <th>Make</th>
-                        <th>Status</th>
-                        <th>Category</th>
-                        <th>  Valuation  </th>
-                        
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {displayValue.map(x =>
-                        <tr key={x.id}>
-                            <td>{x.itemId}</td>
-                            <td>{x.descrption}</td>
-                            <td>{x.make}</td>
-                            <td>{x.status}</td>
-                            <td>{x.Category}</td>
-                            <td>{x.valuation}</td>
-                            
-
-                            <td className={styles.actions}>
-                                <button className={`bg-info text-white  ${styles.btnActions}`}>{'Edit'}</button>
-                                <button className={` bg-danger text-white ${styles.btnActions}`}>{'Delete'}</button>
-                            </td>
-                        </tr>
-                    )
-
-                    }
-                </tbody>
-            </Table>
+            <ViewTable keys={keys} values={displayValue}/>
         </div>
     );
 }

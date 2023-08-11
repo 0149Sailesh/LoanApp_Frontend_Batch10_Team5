@@ -6,9 +6,10 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { ViewTable } from '../../ViewTable';
 let value = [
     {
-        id: 1,
+       
         loadId: 'L001',
         loanType: 'Furniture',
         duration: 5,
@@ -16,7 +17,7 @@ let value = [
 
     },
     {
-        id: 2,
+     
         loadId: 'L001',
         loanType: 'Furchairniture',
         duration: 5,
@@ -24,7 +25,7 @@ let value = [
 
     },
     {
-        id: 3,
+        
         loadId: 'L001',
         loanType: 'Furniture',
         duration: 5,
@@ -32,7 +33,7 @@ let value = [
 
     },
     {
-        id: 4,
+       
         loadId: 'L001',
         loanType: 'Furniture',
         duration: 3,
@@ -40,7 +41,7 @@ let value = [
 
     },
     {
-        id: 5,
+       
         loadId: 'L001',
         loanType: 'Homw',
         duration: 6,
@@ -48,10 +49,25 @@ let value = [
 
     },
 ]
+let keys=['Loan ID', 'Loan Type', 'Duration', 'Issue Date', 'Actions']
 
 export function ViewLoanTable() {
 
-    const [displayValue, setDisplayValue] = useState(value)
+    function ObjectToArray(val){
+        let res=[];
+        for (let i of val){
+            res.push(Object.values(i));
+        }
+        setDisplayValue(res);
+        console.log(res)
+    }
+
+
+    const [displayValue, setDisplayValue] = useState([])
+    useEffect(() => {
+     
+        ObjectToArray(value);
+      }, []);
 
 
     function search(query) {
@@ -60,14 +76,14 @@ export function ViewLoanTable() {
 
             for (let i of value) {
                 //console.log(i);
-                if (i.loanType.toLocaleLowerCase().includes(query.toLocaleLowerCase())|| i.loadId.toLocaleLowerCase().includes(query.toLocaleLowerCase()))
-                    res.push(i);
+                if (i.loadId.toLocaleLowerCase().includes(query.toLocaleLowerCase())|| i.loanType.toLocaleLowerCase().includes(query.toLocaleLowerCase()))
+                    res.push(Object.values(i));
             }
-            setDisplayValue(res);
+            setDisplayValue(res)
 
         }
         else {
-            setDisplayValue(value)
+                    ObjectToArray(value);
         }
 
         console.log(res)
@@ -91,33 +107,7 @@ export function ViewLoanTable() {
                 <button className={`bg-danger text-warning fw-bold ${styles.btn}`}>{'>'}</button>
             </div>
 
-            <Table striped bordered hover responsive='md'>
-                <thead>
-                    <tr>
-                        <th>Loan ID</th>
-                        <th>Loan Type</th>
-                        <th>Duration</th>
-                        <th> Card Issue Date </th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {displayValue.map(x =>
-                        <tr key={x.id}>
-                            <td>{x.loadId}</td>
-                            <td>{x.loanType}</td>
-                            <td>{x.duration}</td>
-                            <td>{x.issueDate}</td>
-                            <td className={styles.actions}>
-                                <button className={`bg-info text-white  ${styles.btnActions}`}>{'Edit'}</button>
-                                <button className={` bg-danger text-white ${styles.btnActions}`}>{'Delete'}</button>
-                            </td>
-                        </tr>
-                    )
-
-                    }
-                </tbody>
-            </Table>
+            <ViewTable keys={keys} values={displayValue}/>
         </div>
     );
 }

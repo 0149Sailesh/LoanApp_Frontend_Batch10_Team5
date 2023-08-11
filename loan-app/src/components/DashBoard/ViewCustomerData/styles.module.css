@@ -10,18 +10,6 @@ input {-webkit-appearance: none; box-shadow: none !important; }
     width: auto;
     justify-content: center;
 }
-.btnActions{
-    
-    border:none;
-    height:90%;
-    padding: 0.25rem 0.5rem;
-    font-size: medium;
-    text-align: center;
-    margin :  0rem 0.25rem;
-    /* background-color: #dee2e6; */
-    border-radius: 5px;
-    
-}
 .head{
     width: 100%;
     text-align: center;
