@@ -29,7 +29,7 @@ function AdminAddCustomerData() {
       backgroundRepeat: 'no-repeat'}}>
   
       <GeneralNav></GeneralNav>
-      <SideMenu></SideMenu>
+      <SideMenuAdmin></SideMenuAdmin>
       <h2 className="text-warning">Customer Master Data Details</h2>
       <div className={`container text-white ${styles.formContainer}`}>
 
