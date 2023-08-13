@@ -30,7 +30,7 @@ function LoanApply() {
       <GeneralNav></GeneralNav>
       <SideMenu></SideMenu>
       <h2 class="text-warning">Loan Application</h2>
-    <div className={`container ${styles.formContainer}`}>
+    <div className={`container text-white ${styles.formContainer}`}>
     
       <form className={`${styles.loanForm}`} onSubmit={handleSubmit}>
   <div class="row">

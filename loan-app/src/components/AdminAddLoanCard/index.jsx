@@ -30,7 +30,7 @@ function AdminAddLoanCard() {
       <GeneralNav></GeneralNav>
       <SideMenu></SideMenu>
       <h2 class="text-warning">Loan Card Master Data Details</h2>
-    <div className={`container ${styles.formContainer}`}>
+    <div className={`container text-white ${styles.formContainer}`}>
     
       <form className={`${styles.loanForm}`} onSubmit={handleSubmit}>
   

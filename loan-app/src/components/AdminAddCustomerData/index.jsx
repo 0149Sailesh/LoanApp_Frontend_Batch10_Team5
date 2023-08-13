@@ -31,7 +31,7 @@ function AdminAddCustomerData() {
       <GeneralNav></GeneralNav>
       <SideMenu></SideMenu>
       <h2 className="text-warning">Customer Master Data Details</h2>
-      <div className={`container  ${styles.formContainer}`}>
+      <div className={`container text-white ${styles.formContainer}`}>
 
         <form className={`${styles.loanForm}`} onSubmit={handleSubmit}>
           <div className="row">
