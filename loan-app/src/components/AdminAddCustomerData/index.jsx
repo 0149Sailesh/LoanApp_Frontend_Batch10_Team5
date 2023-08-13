@@ -93,7 +93,7 @@ function AdminAddCustomerData() {
 
         </form>
       </div>
-    
+    </div>
     
   );
 }
