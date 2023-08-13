@@ -1,6 +1,6 @@
 import React from 'react'
 import LoginNav from '../Navbar/LoginNav'
-import SideMenu from '../SideMenu'
+import SideMenu from '../SideMenuUser'
 import styles from './style.module.css'
 function LoginPage() {
 

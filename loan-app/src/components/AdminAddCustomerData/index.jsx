@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import GeneralNav from "../Navbar/GeneralNav";
-import SideMenu from "../SideMenu";
+import SideMenuAdmin from "../SideMenuAdmin";
 import styles from './style.module.css'
 function AdminAddCustomerData() {
   const [loanDetails, updateDetails] = useState({});
@@ -93,7 +93,8 @@ function AdminAddCustomerData() {
 
         </form>
       </div>
-    </div>
+    
+    
   );
 }
 

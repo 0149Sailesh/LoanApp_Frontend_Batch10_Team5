@@ -1,7 +1,7 @@
 import React from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Card from 'react-bootstrap/Card';
-import SideMenu from '../components/SideMenu';
+import SideMenu from '../components/SideMenuUser';
 import GeneralNav from '../components/Navbar/GeneralNav';
 export function DashBoardContainer() {
     return (
