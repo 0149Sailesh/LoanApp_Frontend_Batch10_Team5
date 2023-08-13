@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import GeneralNav from "../Navbar/GeneralNav";
-import SideMenu from "../SideMenu";
+import SideMenuAdmin from "../SideMenuAdmin";
 import styles from './style.module.css'
 function AdminAddCustomerData() {
   const [loanDetails, updateDetails] = useState({});
@@ -29,9 +29,7 @@ function AdminAddCustomerData() {
       backgroundRepeat: 'no-repeat'}}>
   
       <GeneralNav></GeneralNav>
-      <SideMenu></SideMenu>
-      <h2 className="text-warning">Customer Master Data Details</h2>
-      <div className={`container  ${styles.formContainer}`}>
+      <SideMenuAdmin></SideMenuAdmin>
 
         <form className={`${styles.loanForm}`} onSubmit={handleSubmit}>
           <div className="row">
@@ -93,7 +91,8 @@ function AdminAddCustomerData() {
 
         </form>
       </div>
-    </div>
+    
+    
   );
 }
 

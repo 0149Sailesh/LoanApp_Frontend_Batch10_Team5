@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import GeneralNav from "../Navbar/GeneralNav";
-import SideMenu from "../SideMenu";
+import SideMenu from "../SideMenuUser";
 import styles from './style.module.css'
 function AdminAddLoanCard() {
   const [loanDetails, updateDetails] = useState({});
