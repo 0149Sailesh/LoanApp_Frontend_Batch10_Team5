@@ -5,38 +5,45 @@ import { useRef } from 'react'
 import axios from 'axios'
 import styles from './style.module.css'
 import { ADMIN_REGISTER } from '../url'
+import { useState } from 'react'
 function RegisterPage() {
-
-  const emailRef= useRef('');
-  const passRef= useRef('');
-  const confirmPassRef=useRef('')
-  const nameRef=useRef('');
-  const handleSubmit = async(e) => {
+  const [passValidate, setPassValidate] = useState(false)
+  const emailRef = useRef();
+  const passRef = useRef();
+  const confirmPassRef = useRef()
+  const nameRef = useRef();
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    let formData = {
-      username:nameRef.current,
-      email:emailRef.current,
-      password:passRef.current
-        }
-      try{
-        let res= await axios.post(ADMIN_REGISTER,formData, {
-          headers: {
-            'Content-Type': 'application/json',
-        }
-        }
-      )
-        if(res.status == 200){
-            // test for status you want, etc
-            console.log(res.status)
-        }    
-        // Don't forget to return something   
-        return res.data
+    if (confirmPassRef.current === passRef.current) {
+
+      let formData = {
+        username: nameRef.current,
+        email: emailRef.current,
+        password: passRef.current
+      }
+      //   try{
+      //     let res= await axios.post(ADMIN_REGISTER,formData, {
+      //       headers: {
+      //         'Content-Type': 'application/json',
+      //     }
+      //     }
+      //   )
+      //     if(res.status == 200){
+      //         // test for status you want, etc
+      //         console.log(res.status)
+      //     }    
+      //     // Don't forget to return something   
+      //     return res.data
+      // }
+      // catch (err) {
+      //     console.error(err);
+      // }
+
+      console.log(formData)
     }
-    catch (err) {
-        console.error(err);
+    else {
+      setPassValidate(true)
     }
-      
-    console.log(formData)
   }
   return (
     <div>
@@ -47,24 +54,35 @@ function RegisterPage() {
         </div>
         <div>
           <div className={`${styles.loginForm}`}>
-            <form >
+            <form onSubmit={handleSubmit} >
               <h3>Register</h3>
               <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
-                <input ref={emailRef} onChange={(e)=>emailRef.current=e.target.value} type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+                <input ref={emailRef} onChange={(e) => emailRef.current = e.target.value} type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required />
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
               </div>
               <div class="form-group" style={{ marginTop: "10px" }}>
                 <label for="usr">Name:</label>
-                <input ref={nameRef} onChange={(e)=>nameRef.current=e.target.value}  type="text" class="form-control" id="usr" />
+                <input ref={nameRef} onChange={(e) => nameRef.current = e.target.value} type="text" class="form-control" id="usr" required />
               </div>
               <div class="form-group" style={{ marginTop: "10px" }}>
                 <label for="exampleInputPassword1">Password</label>
-                <input ref={passRef} onChange={(e)=>passRef.current=e.target.value}  type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                <input ref={passRef}  onChange={(e) =>{if(passValidate===true){setPassValidate(false)} passRef.current = e.target.value}} type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required />
               </div>
+              <div class="form-group" style={{ marginTop: "10px" }}>
+                <label for="exampleInputPassword1">Confirm Password</label>
+
+                <input ref={confirmPassRef}  onChange={(e) =>{ confirmPassRef.current = e.target.value;
+                  if(passValidate===true){setPassValidate(false)} 
+                  }} type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password" required />
+              </div>
+              {passValidate && 
+          <div className='text-danger  text-xs'>Password and Confirm Password didnt match</div>
+          }
               <br></br>
+
               <div class="form-group">
-                <button type="submit" onClick={handleSubmit} class="btn text-warning bg-danger fw-bold">Submit</button>
+                <button type="submit" class="btn text-warning bg-danger fw-bold">Submit</button>
               </div>
 
             </form>
