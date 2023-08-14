@@ -3,8 +3,10 @@ import Nav from 'react-bootstrap/Nav';
 import Card from 'react-bootstrap/Card';
 import SideMenu from '../components/SideMenuUser';
 import GeneralNav from '../components/Navbar/GeneralNav';
+import { Footer } from '../components/Footer';
 export function DashBoardContainer() {
     return (
+        <div>
         <div style={{
             height: '100vh',
             backgroundImage: "url(" + "/icons/newwf.png" + ")",
@@ -59,6 +61,9 @@ export function DashBoardContainer() {
                 <SideMenu></SideMenu>
 
             </div>
+        
         </div >
+        <Footer/>
+        </div>
     );
 }
