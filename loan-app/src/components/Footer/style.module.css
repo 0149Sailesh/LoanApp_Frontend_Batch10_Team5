@@ -1,5 +1,26 @@
 .main{
-    width: 100vw;
-    height: 300px;
+    
+        background-color: #f4f0ed;
+        border-top: 1px solid #b5adad;
+        line-height: 1.384;
+    
 
+}
+.logo{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    margin-right: 2rem;
+
+
+
+}
+.nav{
+    display: flex;
+    width: 50%;
+    justify-content: space-evenly;
+}
+.navElement:hover{
+  text-decoration: underline;
+  line-height: 1rem;
 }

@@ -6,7 +6,7 @@ import GeneralNav from '../components/Navbar/GeneralNav';
 import { Footer } from '../components/Footer';
 export function DashBoardContainer() {
     return (
-        <div>
+        <div >
         <div style={{
             height: '100vh',
             backgroundImage: "url(" + "/icons/newwf.png" + ")",
