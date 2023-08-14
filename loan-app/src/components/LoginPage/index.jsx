@@ -3,22 +3,33 @@ import LoginNav from '../Navbar/LoginNav'
 import SideMenu from '../SideMenuUser'
 import styles from './style.module.css'
 import { useEffect } from 'react'
-import { GetAllAdmins } from '../request'
+import { GetAllAdmins, AdminLogin } from '../request'
 function LoginPage() {
 
   const getAllAdmins = async ()=>{
     let res = await GetAllAdmins();
     console.log(res)
+    
+  }
+
+  const loginFunc = async (data) => {
+    const res = await AdminLogin(data)
+
+    console.log(res)
+    localStorage.setItem('Token',res.data)
   }
   useEffect( ()=>{
     getAllAdmins()
   }, [])
   const handleSubmit = (e) =>{
+    e.preventDefault()
     let formData = {
+      username: 'admin1',
       email : e.target.email.value,
       password : e.target.password.value
     }
 
+    const res = loginFunc(formData)
     console.log(formData)
   }
   return (
