@@ -4,7 +4,10 @@ import SideMenu from '../SideMenuUser'
 import styles from './style.module.css'
 import { useEffect } from 'react'
 import { GetAllAdmins, AdminLogin } from '../request'
+import { useHistory } from "react-router-dom";
+
 function LoginPage() {
+  const history = useHistory();
 
   const getAllAdmins = async ()=>{
     let res = await GetAllAdmins();
@@ -17,20 +20,28 @@ function LoginPage() {
 
     console.log(res)
     localStorage.setItem('Token',res.data)
+
+    
   }
-  useEffect( ()=>{
-    getAllAdmins()
-  }, [])
+  // useEffect( ()=>{
+  //   getAllAdmins()
+  // }, [])
   const handleSubmit = (e) =>{
     e.preventDefault()
     let formData = {
-      username: 'admin1',
+      username: 'RajaSailu',
       email : e.target.email.value,
       password : e.target.password.value
     }
 
+
     const res = loginFunc(formData)
+
     console.log(formData)
+ 
+   history.push('/dash-board')
+  
+
   }
   return (
     <div>
