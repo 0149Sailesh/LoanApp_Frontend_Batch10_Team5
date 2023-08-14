@@ -21,25 +21,29 @@ function RegisterPage() {
         email: emailRef.current,
         password: passRef.current
       }
-      //   try{
-      //     let res= await axios.post(ADMIN_REGISTER,formData, {
-      //       headers: {
-      //         'Content-Type': 'application/json',
-      //     }
-      //     }
-      //   )
-      //     if(res.status == 200){
-      //         // test for status you want, etc
-      //         console.log(res.status)
-      //     }    
-      //     // Don't forget to return something   
-      //     return res.data
-      // }
-      // catch (err) {
-      //     console.error(err);
-      // }
+        try{
+          let res= await axios.post(ADMIN_REGISTER,formData, {
+            headers: {
+              'Content-Type': 'application/json',
+          }
+          }
+        )
+          if(res.status == 200){
+              // test for status you want, etc
+              console.log(res.status)
+          }    
+          // Don't forget to return something   
+          return res.data
+      }
+      catch (err) {
+          console.error(err);
+      }
 
       console.log(formData)
+      nameRef='';
+      emailRef='';
+      passRef='';
+      confirmPassRef='';
     }
     else {
       setPassValidate(true)
