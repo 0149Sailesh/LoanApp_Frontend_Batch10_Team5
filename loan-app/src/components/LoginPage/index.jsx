@@ -19,8 +19,8 @@ function LoginPage() {
     const res = await AdminLogin(data)
 
     console.log(res)
-   await localStorage.setItem('Token', res.data)
-
+    localStorage.setItem('Token',res.data.tokenDet)
+    localStorage.setItem('user', JSON.stringify(res.data.userDet))
 
   }
   // useEffect( ()=>{
@@ -29,7 +29,7 @@ function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     let formData = {
-      username: 'raja',
+      username: 'admin1',
       email: e.target.email.value,
       password: e.target.password.value
     }
