@@ -11,14 +11,24 @@ import AdminAddLoanCardContainer from '../containers/AdminAddLoanCardContainer';
 import AdminAddItemDetailsContainer from '../containers/AdminAddItemDetailsContainer';
 export const publicRoutes = [
 
+
+   { url: '/',
+    component: LoginPageContainer,
+    name: 'LoginPageContainer'
+  },
+
+
+  { url: '/register',
+  component: RegisterPageContainer,
+  name: 'RegisterPageContainer'
+  },
+];
+
+export const privateRoutes = [
   {
     url: '/dash-board',
     component: DashBoardContainer,
     name: 'DashBoardContainer'
-  },
-   { url: '/',
-    component: LoginPageContainer,
-    name: 'LoginPageContainer'
   },
 
   { url: '/view-loan',
@@ -33,10 +43,6 @@ url: '/view-items',
 component: ViewItemsContainer ,
 name: 'ViewCustomerContainer'
 },
-  { url: '/register',
-  component: RegisterPageContainer,
-  name: 'RegisterPageContainer'
-  },
   {
     url: '/loanApply',
     component:LoanApplyContainer,
@@ -58,5 +64,3 @@ name: 'ViewCustomerContainer'
     name: 'AddAdminItemDetailsContainer'
   }
 ];
-
-export const privateRoutes = [];
