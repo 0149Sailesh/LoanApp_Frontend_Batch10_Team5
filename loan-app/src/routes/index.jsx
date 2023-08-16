@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { publicRoutes, privateRoutes } from './routes';
 import { ScrollToTopController } from '../components/ScrollToTopController';
 import { GetAdmin } from '../components/request';
+import { Error404 } from '../components/Error/404';
 export function Routes() {
   return (
     
@@ -47,7 +48,7 @@ function Switches() {
           {route.component}
         </PrivateRoute>
       ))}
-      {/* <Route component={Page404} /> */}
+      <Route component={Error404} />
     </Switch>
   );
 }

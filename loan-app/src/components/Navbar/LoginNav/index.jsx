@@ -2,8 +2,19 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-
+import { useEffect } from 'react';
+import { useState } from 'react';
 function LoginNav() {
+  const [loggedIn, setLoggedIn] = useState(true);
+  useEffect(async () => {
+
+    if (localStorage.getItem('Token')) {
+      setLoggedIn(true)
+    } else {
+      setLoggedIn(false);
+    }
+
+  }, [loggedIn]);
   return (
     <Navbar expand="lg" className="bg-danger text-white border-bottom border-5 border-warning ">
       <Container className="text-white">
@@ -11,8 +22,8 @@ function LoginNav() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto pr-10 text-white">
-            <Nav.Link className='text-white fs-6' href="/">Login</Nav.Link>
-            <Nav.Link className='text-white fs-6' href="/register">Register</Nav.Link>
+            {!loggedIn && <Nav.Link className='text-white fs-6' href="/">Login</Nav.Link>}
+            {!loggedIn && <Nav.Link className='text-white fs-6' href="/register">Register</Nav.Link>}
             <Nav.Link></Nav.Link>
             <Nav.Link></Nav.Link>
           </Nav>
