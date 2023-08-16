@@ -7,6 +7,7 @@ import { GetAllAdmins, AdminLogin } from '../request'
 import { useHistory } from "react-router-dom";
 
 function LoginPage() {
+  
   const history = useHistory();
 
   const getAllAdmins = async () => {
@@ -15,6 +16,13 @@ function LoginPage() {
 
   }
 
+  useEffect(async () => {
+
+    if (localStorage.getItem('Token')) {
+      history.push('/dash-board')
+    } 
+
+  }, []);
   const loginFunc = async (data) => {
     const res = await AdminLogin(data)
 
@@ -23,13 +31,11 @@ function LoginPage() {
     localStorage.setItem('user', JSON.stringify(res.data.userDet))
 
   }
-  // useEffect( ()=>{
-  //   getAllAdmins()
-  // }, [])
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     let formData = {
-      username: 'admin1',
+      username: 'raja',
       email: e.target.email.value,
       password: e.target.password.value
     }
