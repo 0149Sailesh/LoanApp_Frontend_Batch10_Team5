@@ -1,6 +1,9 @@
 .formContainer{
     
-    width: 50%;
+    background-color: #EC6A6C;
+    width: 40%;
+    border-radius: 5px;
+    box-shadow: #A4161A 0px 8px 24px;
 }
 
 button{
@@ -23,8 +26,7 @@ button{
 
 .loanForm{
     padding: 20px;
-    box-shadow: 10px 10px grey;
-    border: 0.2px solid black;
+    
 }
 
 h2{

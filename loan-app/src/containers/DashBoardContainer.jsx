@@ -25,7 +25,7 @@ export function DashBoardContainer() {
                             bulk of the card's content.
                         </Card.Text>
                         <div className='d-flex justify-content-evenly'>
-                            <Nav.Link href='/admin-customerData' className='btn px-3 py-2 mt-2 mr-1 bg-danger text-warning border-0 fw-bold' variant="primary">Add</Nav.Link>
+                            <Nav.Link href='/admin-AddCustomerData' className='btn px-3 py-2 mt-2 mr-1 bg-danger text-warning border-0 fw-bold' variant="primary">Add</Nav.Link>
                             <Nav.Link href='/view-customers'  className='btn px-3 py-2 mt-2 ml-1 bg-danger text-warning border-0 fw-bold' variant="primary">View</Nav.Link>
                         </div>
                     </Card.Body>
@@ -39,7 +39,7 @@ export function DashBoardContainer() {
                             bulk of the card's content.
                         </Card.Text>
                         <div className='d-flex justify-content-evenly'>
-                            <Nav.Link className='btn px-3 py-2  mt-2 mr-1 bg-danger text-warning border-0 fw-bold' variant="primary">Add</Nav.Link>
+                            <Nav.Link href='/admin-AddLoanCard' className='btn px-3 py-2  mt-2 mr-1 bg-danger text-warning border-0 fw-bold' variant="primary">Add</Nav.Link>
                             <Nav.Link href='/view-loan' className=' btn px-3 py-2 mt-2 ml-1 bg-danger text-warning border-0 fw-bold' variant="primary">View</Nav.Link>
                         </div>
                     </Card.Body>
@@ -53,7 +53,7 @@ export function DashBoardContainer() {
                             bulk of the card's content.
                         </Card.Text>
                         <div className='d-flex justify-content-evenly'>
-                            <Nav.Link className=' btn px-3 py-2 mt-2 mr-1 bg-danger text-warning border-0 fw-bold' variant="primary">Add</Nav.Link>
+                            <Nav.Link href='/admin-AddItemDetails' className=' btn px-3 py-2 mt-2 mr-1 bg-danger text-warning border-0 fw-bold' variant="primary">Add</Nav.Link>
                             <Nav.Link href='/view-items' className='   btn px-3 py-2 mt-2 ml-1 bg-danger text-warning border-0 fw-bold' variant="primary">View</Nav.Link>
                         </div>
                     </Card.Body>
