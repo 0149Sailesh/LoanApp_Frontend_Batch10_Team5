@@ -5,6 +5,9 @@ import styles from './style.module.css'
 import { useEffect } from 'react'
 import { GetAllAdmins, AdminLogin } from '../request'
 import { useHistory } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function LoginPage() {
   
@@ -33,25 +36,33 @@ function LoginPage() {
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    try{
+      e.preventDefault()
     let formData = {
       username: 'raja',
       email: e.target.email.value,
       password: e.target.password.value
     }
 
-
     const res = await loginFunc(formData)
 
     console.log(formData)
 
     history.push('/dash-board')
+    } catch(err){
+      if(err.response.status==404){
+        toast.error('Incorrect Credentials!')
+      }
+      console.log(err.response.status)
+    }
+    
 
 
   }
   return (
     <div>
       <LoginNav></LoginNav>
+      <ToastContainer/>
       <div className={`${styles.loginContainer}`}>
         <div className={`${styles.flexItems}`}>
           <img width='100%' src='/stagecoach.jpg' alt="" />
