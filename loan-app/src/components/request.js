@@ -16,7 +16,11 @@ const getHeader = ()=>{
 
     return header;
 }
+const getUserName = ()=>{
+    let user = JSON.parse(localStorage.getItem('user'))
+    return user.username;
+}
 // Test route
-export const GetAdmin = () => axios.get(GET_ADMIN, getHeader(), { params: { id: 'raja' } });
+export const GetAdmin = () => axios.get(GET_ADMIN, getHeader(), { params: {id: getUserName()} });
 export const AdminLogin = (data) => axios.post(ADMIN_LOGIN, data)
 export const GetAllAdmins=()=>axios.get(GET_ALL_ADMINS, getHeader)
