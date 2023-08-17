@@ -19,6 +19,11 @@ input {-webkit-appearance: none; box-shadow: none !important; }
     padding-top: 5px;
 
 }
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
 .searchInput {
     outline: none;
     box-shadow: none;

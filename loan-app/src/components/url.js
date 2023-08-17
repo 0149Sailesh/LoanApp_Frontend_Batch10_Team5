@@ -14,3 +14,4 @@ export const DELETE_LOAN=`${BACKEND_URL}/api/LoanCardMaster/DeleteLoanCard`
 export const ADD_ITEM = `${BACKEND_URL}/api/ItemMaster/RegisterItem`
 export const GET_ALL_ITEMS = `${BACKEND_URL}/api/ItemMaster/GetAllItems`
 export const DELETE_ITEM = `${BACKEND_URL}/api/ItemMaster/DeleteItem`
+export const UPDATE_ITEM = `${BACKEND_URL}/api/ItemMaster/EditItem`

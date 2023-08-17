@@ -19,10 +19,11 @@ function AdminAddItemDetails() {
       item_Id: e.target.itemId.value,
       item_Category: e.target.itemCategory.value,
       item_Description: e.target.itemDescription.value,
-      item_Valuaton: Number(e.target.itemValue.value),
+      item_Valuation: Number(e.target.itemValue.value),
       item_Make: e.target.itemMake.value,
       issue_Status: e.target.itemStatus.value
     }
+    console.log("Form data is", formData)
 
     let res = await AddItem(formData)
     toast.success('Item Added Successfully')

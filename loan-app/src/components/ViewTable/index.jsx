@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 export function ViewTable({keys, values,deleteHandler,modelHandler}) {
 
     // const [displayValue, setDisplayValue] = useState(value)
-
+    const [item_id, setId] = useState('')
     return (
         <div className='container'>
             <Table striped bordered hover responsive='md'>
