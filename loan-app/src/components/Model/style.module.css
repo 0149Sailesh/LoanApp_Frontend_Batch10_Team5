@@ -1,0 +1,47 @@
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 208, 0, 0.418);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top:0px;
+
+}
+.body{
+    width: 50%;
+    height: 60%;
+    border-radius: 5px;
+    background-color: #A4161A;
+}
+.head{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background: inherit;
+    color: white;
+    height: 15%;
+    width: 100%;
+ 
+}
+.btn{
+    color: white;
+    background-color: #386641;
+    border: none;
+    margin-left: 10px;
+}
+
+.modelBody{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #ba181b;
+    color: white;
+    width: 100%;
+    border-radius: 5px;
+    height: 85%;
+
+}
