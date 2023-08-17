@@ -7,7 +7,9 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { ViewTable } from '../../ViewTable';
 import { GetAllItems } from '../../request';
-
+import { DeleteItem } from '../../request';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 let keys=['Item ID', 'Descrption', 'Status', 'Make', 'Category', 'Valuation', 'Actions']
 export function ViewItemsData() {
@@ -19,6 +21,19 @@ export function ViewItemsData() {
         ObjectToArray(res.data)
     }
 
+    const deleteHandler = async (id) =>{
+        try{
+            const resp = await DeleteItem(id)
+            console.log(resp)
+            toast.success('Item deleted sucessfully!')
+            FetchAllItems()
+        } catch (e) {
+
+        }
+       
+
+
+    }
     function ObjectToArray(val){
         let res=[];
         for (let i of val){
@@ -59,6 +74,7 @@ export function ViewItemsData() {
 
     return (
         <div className='container'>
+            <ToastContainer/>
             <h1 className={`r text-warning ${styles.head}`}>Items Data</h1>
             <div className={styles.navBar} >
 
@@ -73,7 +89,7 @@ export function ViewItemsData() {
                 <button className={`bg-danger text-warning fw-bold ${styles.btn}`}>{'>'}</button>
             </div>
 
-            <ViewTable keys={keys} values={displayValue}/>
+            <ViewTable keys={keys} values={displayValue} deleteHandler={deleteHandler}/>
         </div>
     );
 }
