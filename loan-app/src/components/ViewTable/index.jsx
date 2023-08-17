@@ -24,7 +24,7 @@ export function ViewTable({keys, values,deleteHandler,modelHandler}) {
                         <tr>
                             {value.map(x=> <td  >{x}</td>)}
                             <td className={styles.actions}>
-                                <button className={`bg-info text-white  ${styles.btnActions}`} onClick={()=>modelHandler()} >{'Edit'}</button>
+                                <button className={`bg-info text-white  ${styles.btnActions}`} onClick={()=>modelHandler(value)} >{'Edit'}</button>
                                 <button className={` bg-danger text-white ${styles.btnActions}`} onClick={()=> deleteHandler(value[0])} >{'Delete'}</button>
                             </td>
                         </tr>

@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 import { GET_ALL_ADMINS, ADMIN_LOGIN, GET_ADMIN, EMPLOYEE_REGISTER, LOAN_REGISTER,
-     GET_ALL_LOAN, DELETE_LOAN, ADD_ITEM, GET_ALL_ITEMS, DELETE_ITEM, UPDATE_ITEM} from './url'
+     GET_ALL_LOAN, DELETE_LOAN, ADD_ITEM, GET_ALL_ITEMS, DELETE_ITEM, UPDATE_ITEM, PUT_LOAN} from './url'
+
 
 
 const getHeader = () => {
@@ -50,3 +51,4 @@ export const AddItem = (data) => axios.post(ADD_ITEM, data)
 export const GetAllItems = ()=> axios.get(GET_ALL_ITEMS)
 export const DeleteItem = (id) => axios.delete(`${DELETE_ITEM}/${id}`)
 export const EditItem = (data) => axios.put(UPDATE_ITEM, data, getHeader())
+export const PutLoan=(data)=>axios.put(PUT_LOAN, data)

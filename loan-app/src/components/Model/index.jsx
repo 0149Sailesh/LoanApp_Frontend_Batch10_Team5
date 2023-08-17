@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import styles from './style.module.css'
 import Modal from 'react-bootstrap/Modal';
-function LocalModel({childComponent,closeModel}) {
+function LocalModel({childComponent,heading}) {
     return (
         <div
             className={`${styles.main} modal show`}
@@ -9,7 +9,7 @@ function LocalModel({childComponent,closeModel}) {
         >
             <div className={styles.body}>
                 <div closeButton className={styles.head}>
-                    <Modal.Title>Modal title</Modal.Title>
+                    <Modal.Title>{heading}</Modal.Title>
                 </div>
 
                 <div className={styles.modelBody}>

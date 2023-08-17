@@ -12,17 +12,19 @@ import { DeleteLoan } from '../../request';
 import LocalModel from '../../Model';
 import { useRef } from 'react';
 import Button from 'react-bootstrap/Button';
+import { PutLoan } from '../../request';
 
 let keys = ['Loan ID', 'Loan Type', 'Duration', 'Actions']
 
 export function ViewLoanTable() {
-    const loanId = useRef('');
+    const [modelObj, setModelObj] = useState([]);
     const loanType = useRef('');
     const duration = useRef(0);
     const [viewModle, setViewModel] = useState(false)
     const [deleted, setDeleted] = useState(false)
     const [displayValue, setDisplayValue] = useState([])
     const [list, setList] = useState([])
+
     function ObjectToArray(val) {
         let res = [];
         for (let i of val) {
@@ -66,12 +68,43 @@ export function ViewLoanTable() {
         setDeleted(!deleted)
         // console.log(id)
     }
-    function openModel() {
+    function openModel(value) {
+        setModelObj(value);
+        loanType.current = value[1];
+        duration.current = value[2];
         setViewModel(true)
     }
     function closeModel() {
         setViewModel(false);
     }
+    async function handleSubmit(e) {
+        let formData = {
+            loan_Id: modelObj[0],
+            loan_Type: '',
+            duration: ''
+        }
+        e.preventDefault()
+        if (typeof loanType.current === 'string' || loanType.current instanceof String) {
+            formData.loan_Type=loanType.current;
+        }
+        else{
+            formData.loan_Type='Furniture';
+        }
+        if (typeof duration.current === 'string' || duration.current instanceof String) {
+            formData.duration=duration.current;
+        }
+        else{
+            formData.duration=modelObj[2];
+        }
+
+        const res = await PutLoan(formData)
+        console.log(res);
+        console.log(formData)
+        setDeleted(!deleted)
+        closeModel()
+
+    }
+
     function editComponent() {
         return (
             <div>
@@ -82,7 +115,7 @@ export function ViewLoanTable() {
                         <div class="form-group">
                             <label for="inputState">Loan Type</label>
                             <select name="loanType" id="inputState" class="form-control" ref={loanType} onChange={(e) => loanType.current = e.target.value}>
-                                <option value={'Furniture'} selected>Furniture</option>
+                                <option value={'Furniture'} >Furniture</option>
                                 <option value={'Crockery'}>Crockery</option>
                             </select>
                         </div>
@@ -98,7 +131,7 @@ export function ViewLoanTable() {
 
                     <div>
                         <Button variant="secondary" className='mr-3' onClick={closeModel}>Close</Button>
-                        <Button variant="warning " className={styles.btnModel}>Save changes</Button>
+                        <Button onClick={handleSubmit} variant="warning " className={styles.btnModel}>Save changes</Button>
                     </div>
 
                 </form>
@@ -108,7 +141,7 @@ export function ViewLoanTable() {
 
     return (
         <div className='container'>
-            {viewModle && <LocalModel childComponent={editComponent} closeModel={closeModel}></LocalModel>}
+            {viewModle && <LocalModel childComponent={editComponent} heading={`Edit model for Loan Card: ${modelObj[0]}`}></LocalModel>}
             <h1 className={`r text-warning ${styles.head}`}>Loan Data</h1>
             <div className={styles.navBar} >
 
