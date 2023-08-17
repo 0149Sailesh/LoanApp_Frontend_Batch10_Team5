@@ -6,46 +6,18 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { ViewTable } from '../../ViewTable';
-let value = [
-    {
-       
-        itemId: 'L001',
-        descrption: 'Hammer',
-        status: ' associate',
-        make: 'wood',
-        valuation:'2000',
-     Category:'Home',
-    },  {
-        
-        itemId: 'L2001',
-        descrption: 'Hat',
-        status: ' associate',
-        make: 'wood',
-        valuation:'2000',
-     Category:'Home',
-    }, 
-    {
-        
-        itemId: 'L009',
-        descrption: 'Cooker',
-        status: ' associate',
-        make: 'wood',
-        valuation:'2000',
-     Category:'Home',
-    }, 
-    {
-        
-        itemId: 'L0201',
-        descrption: 'Dog',
-        status: ' associate',
-        make: 'wood',
-        valuation:'2000',
-     Category:'Home',
-    }, 
+import { GetAllItems } from '../../request';
 
-]
-let keys=['Item ID', 'Descrption', 'Status', 'Make', 'Valuation', 'Category', 'Actions']
+
+let keys=['Item ID', 'Descrption', 'Status', 'Make', 'Category', 'Valuation', 'Actions']
 export function ViewItemsData() {
+    const FetchAllItems = async ()=>{
+        console.log("Fetch function called")
+        const res = await GetAllItems();
+        console.log("Response values", res.data)
+        setGlobalValue(res.data)
+        ObjectToArray(res.data)
+    }
 
     function ObjectToArray(val){
         let res=[];
@@ -53,24 +25,26 @@ export function ViewItemsData() {
             res.push(Object.values(i));
         }
         setDisplayValue(res);
+       
         console.log(res)
     }
 
 
     const [displayValue, setDisplayValue] = useState([])
+    const [value, setGlobalValue] = useState([])
     useEffect(() => {
-     
-        ObjectToArray(value);
+        FetchAllItems()
+        //ObjectToArray(value);
       }, []);
 
 
     function search(query) {
         let res = [];
         if (query !== '') {
-
+            console.log("For query", value)
             for (let i of value) {
                 //console.log(i);
-                if (i.descrption.toLocaleLowerCase().includes(query.toLocaleLowerCase())|| i.itemId.toLocaleLowerCase().includes(query.toLocaleLowerCase()))
+                if (i.item_Description.toLocaleLowerCase().includes(query.toLocaleLowerCase())|| i.item_Id.toLocaleLowerCase().includes(query.toLocaleLowerCase()))
                     res.push(Object.values(i));
             }
             setDisplayValue(res)

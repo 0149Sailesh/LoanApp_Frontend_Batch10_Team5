@@ -2,22 +2,37 @@ import React, { useState } from "react";
 import GeneralNav from "../Navbar/GeneralNav";
 import SideMenu from "../SideMenuUser";
 import styles from './style.module.css'
+import { AddItem } from "../request";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 function AdminAddItemDetails() {
   const [loanDetails, updateDetails] = useState({});
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(e.target.empId.value)
-
+  const handleSubmit = async(e) => {
+    console.log("Submitttinggggggg")
+    try{
+      console.log("try block")
+      e.preventDefault()
+    
     let formData = {
-      employeeId: e.target.empId.value,
-      itemCategory: e.target.itemCategory.value,
-      itemDescription: e.target.itemDescription.value,
-      itemValue: Number(e.target.itemValue.value),
-      itemMake: e.target.itemMake.value
+      item_Id: e.target.itemId.value,
+      item_Category: e.target.itemCategory.value,
+      item_Description: e.target.itemDescription.value,
+      item_Valuaton: Number(e.target.itemValue.value),
+      item_Make: e.target.itemMake.value,
+      issue_Status: e.target.itemStatus.value
     }
 
-    console.log(formData)
+    let res = await AddItem(formData)
+    toast.success('Item Added Successfully')
+    console.log(res)
+   
+    } catch(e){
+      console.log(e)
+      toast.error('Invalid item data')
+    }
+    
   }
   return (
     <div style={{
@@ -30,6 +45,7 @@ function AdminAddItemDetails() {
     }}>
       <GeneralNav></GeneralNav>
       <SideMenu></SideMenu>
+      <ToastContainer/>
       <h2 class="text-warning">Item Master Data Details</h2>
       <div className={`container text-white ${styles.formContainer}`}>
 
@@ -54,10 +70,10 @@ function AdminAddItemDetails() {
               <input required type="text" name="itemDescription" class="form-control" id="inputAddress" placeholder="Item description" />
             </div>
             <div class="form-group col-md-3">
-              <label for="inputState2">Item Stats</label>
-              <select id="inputState2" name="itemMake" class="form-control">
-                <option selected>Yes</option>
-                <option>No</option>
+              <label for="inputState2">Issue Status</label>
+              <select id="inputState2" name="itemStatus" class="form-control">
+                <option selected>S</option>
+                <option>N</option>
               </select>
             </div>
           </div>

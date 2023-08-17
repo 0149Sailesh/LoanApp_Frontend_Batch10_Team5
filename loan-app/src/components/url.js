@@ -8,3 +8,9 @@ export const GET_ADMIN=`${BACKEND_URL}/api/Admin/GetAdmin/{id}`
 export const LOAN_REGISTER=`${BACKEND_URL}/api/LoanCardMaster/RegisterLoanCard`
 export const GET_ALL_LOAN=`${BACKEND_URL}/api/LoanCardMaster/GetAllLoanCards`
 export const DELETE_LOAN=`${BACKEND_URL}/api/LoanCardMaster/DeleteLoanCard`
+
+
+//Item specific
+export const ADD_ITEM = `${BACKEND_URL}/api/ItemMaster/RegisterItem`
+export const GET_ALL_ITEMS = `${BACKEND_URL}/api/ItemMaster/GetAllItems`
+export const DELETE_ITEM = `${BACKEND_URL}/api/ItemMaster/DeleteItem`
