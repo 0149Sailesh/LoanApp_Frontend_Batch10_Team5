@@ -11,12 +11,13 @@ import { GetAllLoan } from '../../request';
 import { DeleteLoan } from '../../request';
 import LocalModel from '../../Model';
 import { useRef } from 'react';
+import Button from 'react-bootstrap/Button';
 
 let keys = ['Loan ID', 'Loan Type', 'Duration', 'Actions']
 
 export function ViewLoanTable() {
-    const loanId=useRef('');
-    const loanType=useRef('');
+    const loanId = useRef('');
+    const loanType = useRef('');
     const duration = useRef(0);
     const [viewModle, setViewModel] = useState(false)
     const [deleted, setDeleted] = useState(false)
@@ -65,10 +66,10 @@ export function ViewLoanTable() {
         setDeleted(!deleted)
         // console.log(id)
     }
-     function openModel() {
+    function openModel() {
         setViewModel(true)
     }
-    function closeModel(){
+    function closeModel() {
         setViewModel(false);
     }
     function editComponent() {
@@ -77,9 +78,7 @@ export function ViewLoanTable() {
                 <form className={`${styles.loanForm}`} >
 
                     <div class="form-group">
-                        <label for="inputEmail4">Loan id</label>
-                        <input required type="text" name="loanId" class="form-control" id="inputEmail4" placeholder="Loan id" ref={loanId} onChange={(e) => loanId.current = e.target.value} />
-                        <br></br>
+
                         <div class="form-group">
                             <label for="inputState">Loan Type</label>
                             <select name="loanType" id="inputState" class="form-control" ref={loanType} onChange={(e) => loanType.current = e.target.value}>
@@ -95,9 +94,12 @@ export function ViewLoanTable() {
                             <input required type="number" name="duration" class="form-control" id="inputAddress" placeholder="1" ref={duration} onChange={(e) => duration.current = e.target.value} />
                         </div>
                     </div>
-
                     <br></br>
-                    
+
+                    <div>
+                        <Button variant="secondary" className='mr-3' onClick={closeModel}>Close</Button>
+                        <Button variant="warning " className={styles.btnModel}>Save changes</Button>
+                    </div>
 
                 </form>
             </div>

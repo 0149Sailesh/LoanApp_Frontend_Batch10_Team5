@@ -16,10 +16,6 @@ function LocalModel({childComponent,closeModel}) {
                   {childComponent()}
 
 
-                    <div>
-                        <Button variant="secondary" className='mr-3' onClick={closeModel}>Close</Button>
-                        <Button variant="warning " className={styles.btn}>Save changes</Button>
-                    </div>
                 </div>
 
             </div>

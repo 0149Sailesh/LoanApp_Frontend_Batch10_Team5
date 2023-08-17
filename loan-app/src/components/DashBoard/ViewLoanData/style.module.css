@@ -62,4 +62,9 @@ input {-webkit-appearance: none; box-shadow: none !important; }
     
 }
 
+.btnModel{    color: white;
+    background-color: #386641;
+    border: none;
+    margin-left: 10px;
+}
 

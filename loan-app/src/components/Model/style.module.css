@@ -26,12 +26,7 @@
     width: 100%;
  
 }
-.btn{
-    color: white;
-    background-color: #386641;
-    border: none;
-    margin-left: 10px;
-}
+
 
 .modelBody{
     display: flex;
