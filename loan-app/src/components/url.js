@@ -6,3 +6,5 @@ export const ADMIN_REGISTER=`${BACKEND_URL}/api/Admin/RegisterAdmin`
 export const ADMIN_LOGIN = `${BACKEND_URL}/api/Admin/LoginAdmin`
 export const GET_ADMIN=`${BACKEND_URL}/api/Admin/GetAdmin/{id}`
 export const LOAN_REGISTER=`${BACKEND_URL}/api/LoanCardMaster/RegisterLoanCard`
+export const GET_ALL_LOAN=`${BACKEND_URL}/api/LoanCardMaster/GetAllLoanCards`
+export const DELETE_LOAN=`${BACKEND_URL}/api/LoanCardMaster/DeleteLoanCard`
