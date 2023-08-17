@@ -1,33 +1,58 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import GeneralNav from "../Navbar/GeneralNav";
 import SideMenuAdmin from "../SideMenuAdmin";
-import styles from './style.module.css'
+import styles from './style.module.css';
+import { useRef } from "react";
+import { EmpRegister } from "../request";
 function AdminAddCustomerData() {
-  const [loanDetails, updateDetails] = useState({});
+  const empId = useRef('');
+  const empName = useRef('');
+  const empGender = useRef('');
+  const designation = useRef('');
+  const dob = useRef('');
+  const department=useRef('')
+  const doj = useRef('');
+  // const [loanDetails, updateDetails] = useState({});
+useEffect(()=>{
 
-  const handleSubmit = (e) => {
+  designation.current='Maneger';
+  department.current='Finance';
+  empGender.current='M'
+})
+  const handleSubmit = async(e) => {
     e.preventDefault()
     console.log(e.target.empId.value)
 
     let formData = {
-      employeeId: e.target.empId.value,
-      itemCategory: e.target.itemCategory.value,
-      itemDescription: e.target.itemDescription.value,
-      itemValue: Number(e.target.itemValue.value),
-      itemMake: e.target.itemMake.value
+      employee_Id: empId.current,
+      employee_Name: empName.current,
+      employee_Gender: empGender.current,
+      designation: designation.current,
+      date_of_Birth: '2023-08-16T16:04:03.746Z',
+      date_of_Joining:"2023-08-16T16:04:03.746Z",
     }
+     const res = await EmpRegister(formData)
+    // empId.current='';
+    // empGender.current='';
+    // empName.current='';
+    // designation.current='';
+    // dob.current='';
+    // // doj.current='';
+    // department='';
+       console.log(res)
 
     console.log(formData)
   }
   return (
-    <div  style={{
+    <div style={{
 
       height: '100vh',
       backgroundImage: "url(" + "/icons/newwf.png" + ")",
       backgroundPosition: 'top',
       backgroundSize: 'cover',
-      backgroundRepeat: 'no-repeat'}}>
-  
+      backgroundRepeat: 'no-repeat'
+    }}>
+
       <GeneralNav></GeneralNav>
       <SideMenuAdmin></SideMenuAdmin>
       <h2 className="text-warning">Customer Master Data Details</h2>
@@ -35,38 +60,44 @@ function AdminAddCustomerData() {
 
         <form className={`${styles.loanForm}`} onSubmit={handleSubmit}>
           <div className="row">
+
+            <div className="form-group col-md-12">
+              <label for="empName">Employee Name</label>
+              <input required type="text" name="empName" className="form-control" id="empname" placeholder="Employee Name" ref={empName} onChange={(e) => empName.current = e.target.value} />
+            </div>
+
+
+          </div>
+          <br></br>
+          <div className="row">
             <div className="form-group col-md-6">
-              <label for="inputEmail4">Employee id</label>
-              <input required type="text" name="empId" className="form-control"  id="inputEmail4" placeholder="Employee id" />
+              <label for="empId">Employee id</label>
+              <input ref={empId} onChange={(e) => empId.current = e.target.value} required type="text" name="empId" className="form-control" id="inputEmail4" placeholder="Employee id" />
             </div>
             <div className="form-group col-md-6">
               <label for="inputState">Designation</label>
-              <select name="designation" id="inputState" className="form-control">
-                <option selected>Furniture</option>
-                <option>Crockery</option>
+              <select name="designation" id="inputState" className="form-control" ref={designation} onChange={(e) => designation.current = e.target.value}>
+                
+              <option id="departure-city" value="" disabled="" selected="">Departure city</option>
+                    <option value="1">Cairo</option>
+                <option  value={'Maneger'}>Maneger</option>
+                <option value={'Coder'}>Coder</option>
               </select>
             </div>
           </div>
-          <br></br>
-          <div className="row">
 
-            <div className="form-group col-md-12">
-              <label for="inputAddress">Item Description</label>
-              <input required type="text" name="itemDescription" className="form-control" id="inputAddress" placeholder="Item description" />
-            </div>
-          </div>
           <br></br>
           <div className="row">
             <div className="form-group col-md-6">
-              <label for="inputState2">Gender</label>
-              <select id="inputState2" name="itemMake" className="form-control">
-                <option selected>Male</option>
-                <option>Female</option>
+              <label for="gender">Gender</label>
+              <select name="gender" id="gender" className="form-control" ref={empGender} onChange={(e) => {empGender.current = e.target.value; console.log(e.target.value)}}>
+                <option selected value={'M'}>Male</option>
+                <option value={'F'}>Female</option>
               </select>
             </div>
             <div className="form-group col-md-6">
-              <label for="startDate">Date of Birth</label>
-              <input id="startDate" className="form-control" type="date" />
+              <label for="dob">Date of Birth</label> 
+              <input id="dob" className="form-control" type="date" ref={dob} onChange={(e)=>dob.current=e.target.value} required />
             </div>
 
           </div>
@@ -74,15 +105,15 @@ function AdminAddCustomerData() {
           <br></br>
           <div className="row">
             <div className="form-group col-md-6">
-              <label for="inputState2">Department</label>
-              <select id="inputState2" name="itemMake" className="form-control">
-                <option selected>Opt1</option>
-                <option>Opt2</option>
+              <label for="dept">Department</label>
+              <select id="dept" name="itemMake" className="form-control" ref={department} onChange={(e)=>department.current=e.target.value}>
+                <option value='Finance' selected>Finance</option>
+                <option value ='Coder'>Coder</option>
               </select>
             </div>
             <div className="form-group col-md-6">
-              <label for="startDate">Date of Joining</label>
-              <input id="startDate" className="form-control" type="date" />
+              <label for="doj">Date of Joining</label>
+              <input id="doj" className="form-control" type="date" ref={doj} onChange={(e)=>doj.current=e.target.value} required />
             </div>
 
           </div>
@@ -94,7 +125,7 @@ function AdminAddCustomerData() {
         </form>
       </div>
     </div>
-    
+
   );
 }
 
