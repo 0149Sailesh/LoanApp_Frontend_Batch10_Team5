@@ -36,24 +36,26 @@ function LoginPage() {
   }
 
   const handleSubmit = async (e) => {
+    e.preventDefault()
     try{
-      e.preventDefault()
+     
     let formData = {
-      username: 'raja',
-      email: e.target.email.value,
+      username: e.target.userName.value,
+     
       password: e.target.password.value
     }
+    console.log(formData)
 
     const res = await loginFunc(formData)
 
-    console.log(formData)
+    
 
     history.push('/dash-board')
     } catch(err){
       if(err.response.status==404){
         toast.error('Incorrect Credentials!')
       }
-      console.log(err.response.status)
+      
     }
     
 
@@ -72,8 +74,8 @@ function LoginPage() {
             <form onSubmit={handleSubmit} >
               <h3>Login</h3>
               <div className="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input name="email" required type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+                <label for="exampleInputEmail1">Username</label>
+                <input name="userName" required type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
                 <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
               </div>
               <div className="form-group">
