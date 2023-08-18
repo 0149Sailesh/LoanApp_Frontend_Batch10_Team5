@@ -16,3 +16,6 @@ export const GET_ALL_ITEMS = `${BACKEND_URL}/api/ItemMaster/GetAllItems`
 export const DELETE_ITEM = `${BACKEND_URL}/api/ItemMaster/DeleteItem`
 export const UPDATE_ITEM = `${BACKEND_URL}/api/ItemMaster/EditItem`
 export const PUT_LOAN=`${BACKEND_URL}/api/LoanCardMaster/EditLoanCard`
+export const GET_ALL_EMPLOYEE=`${BACKEND_URL}/api/EmployeeMaster/GetAllEmployees`
+export const DELETE_EMPLOYEE=`${BACKEND_URL}/api/EmployeeMaster/DeleteEmployee`
+export const PUT_EMPLOYEE=`${BACKEND_URL}/api/EmployeeMaster/EditEmployee`

@@ -28,8 +28,9 @@ useEffect(()=>{
       employee_Name: empName.current,
       employee_Gender: empGender.current,
       designation: designation.current,
-      date_of_Birth: '2023-08-16T16:04:03.746Z',
-      date_of_Joining:"2023-08-16T16:04:03.746Z",
+      date_of_Birth: dob.current,
+      date_of_Joining:doj.current,
+      department:department.current
     }
      const res = await EmpRegister(formData)
     // empId.current='';

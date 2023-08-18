@@ -39,7 +39,7 @@ function LoginPage() {
     try{
       e.preventDefault()
     let formData = {
-      username: 'admin2',
+      username: 'raja',
       email: e.target.email.value,
       password: e.target.password.value
     }

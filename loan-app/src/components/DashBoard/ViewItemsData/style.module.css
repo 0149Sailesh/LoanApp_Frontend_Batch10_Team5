@@ -10,6 +10,11 @@ input {-webkit-appearance: none; box-shadow: none !important; }
     width: auto;
     justify-content: center;
 }
+.btnModel{    color: white;
+    background-color: #386641;
+    border: none;
+    margin-left: 10px;
+}
 
 .head{
     width: 100%;
