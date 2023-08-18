@@ -6,7 +6,9 @@ import axios from 'axios'
 import styles from './style.module.css'
 import { ADMIN_REGISTER } from '../url'
 import { useState } from 'react'
+import { useHistory } from "react-router-dom"
 function RegisterPage() {
+  const history=useHistory()
   const [passValidate, setPassValidate] = useState(false)
   const emailRef = useRef();
   const passRef = useRef();
@@ -29,6 +31,7 @@ function RegisterPage() {
           }
         )
           if(res.status == 200){
+              history.push('/')
               // test for status you want, etc
               console.log(res.status)
           }    

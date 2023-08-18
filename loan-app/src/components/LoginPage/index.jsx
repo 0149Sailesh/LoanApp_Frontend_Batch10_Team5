@@ -27,11 +27,16 @@ function LoginPage() {
 
   }, []);
   const loginFunc = async (data) => {
-    const res = await AdminLogin(data)
+try{    const res = await AdminLogin(data)
 
     console.log(res)
     localStorage.setItem('Token',res.data.tokenDet)
     localStorage.setItem('user', JSON.stringify(res.data.userDet))
+    toast.success('Logged in')
+  }
+    catch(e){
+toast.error('try again')
+    }
 
   }
 

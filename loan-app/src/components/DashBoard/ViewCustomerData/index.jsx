@@ -11,6 +11,8 @@ import { DeleteEmployee } from '../../request';
 import LocalModel from '../../Model';
 import { useRef } from 'react';
 import Button from 'react-bootstrap/esm/Button';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { PutEmployee } from '../../request';
 let keys = ['Employee ID', 'Employee Name','Gender', 'Designation', 'Department', 'Birth Date', 'Join Date', 'Actions']
 
@@ -65,10 +67,14 @@ export function ViewCustomerData() {
     }
 
     async function deleteHandler(id) {
-        let res = await DeleteEmployee(id);
+       try{ let res = await DeleteEmployee(id);
         console.log(res)
         setDeleted(!deleted)
-        // console.log(id)
+        toast.success('Deleted')
+   }
+   catch(e){
+    toast.error('Try again')
+   }
     }
     function openModel(value) {
         setModelObj(value);
@@ -80,50 +86,56 @@ export function ViewCustomerData() {
     } const handleSubmit = async(e) => {
         e.preventDefault()
         
-    
-        let formData = {
-          employee_Id: modelObj[0],
-          employee_Name: empName.current,
-          employee_Gender: empGender.current,
-          designation: designation.current,
-          date_of_Birth: dob.current,
-          date_of_Joining:doj.current,
-          department:department.current,
-          password: "string"
-        }
-        if (typeof formData.employee_Name !== 'string') {
-            formData.employee_Name=modelObj[1]
-        }
-        if (typeof formData.employee_Gender !== 'string') {
-            formData.employee_Gender=modelObj[2]
-        }
+    try{  let formData = {
+        employee_Id: modelObj[0],
+        employee_Name: empName.current,
+        employee_Gender: empGender.current,
+        designation: designation.current,
+        date_of_Birth: dob.current,
+        date_of_Joining:doj.current,
+        department:department.current,
+        password: "string"
+      }
+      if (typeof formData.employee_Name !== 'string') {
+          formData.employee_Name=modelObj[1]
+      }
+      if (typeof formData.employee_Gender !== 'string') {
+          formData.employee_Gender=modelObj[2]
+      }
 
-        if (typeof formData.date_of_Birth !== 'string') {
-            formData.date_of_Birth=modelObj[5]
-        }
-        if (typeof formData.date_of_Joining !== 'string') {
-            formData.date_of_Joining=modelObj[6]
-        }
-        if (typeof formData.department !== 'string') {
-            formData.department=modelObj[4]
-        }
-         if (typeof formData.designation !== 'string') {
-            formData.designation=modelObj[3]
-        }
-         const res = await PutEmployee(formData)
-        // empId.current='';
-        // empGender.current='';
-        // empName.current='';
-        // designation.current='';
-        // dob.current='';
-        // // doj.current='';
-        // department='';
-           console.log(res)
-    
-        console.log(formData)
+      if (typeof formData.date_of_Birth !== 'string') {
+          formData.date_of_Birth=modelObj[5]
+      }
+      if (typeof formData.date_of_Joining !== 'string') {
+          formData.date_of_Joining=modelObj[6]
+      }
+      if (typeof formData.department !== 'string') {
+          formData.department=modelObj[4]
+      }
+       if (typeof formData.designation !== 'string') {
+          formData.designation=modelObj[3]
+      }
+       const res = await PutEmployee(formData)
+      // empId.current='';
+      // empGender.current='';
+      // empName.current='';
+      // designation.current='';
+      // dob.current='';
+      // // doj.current='';
+      // department='';
+         console.log(res)
+  
+      console.log(formData)
 
-        setDeleted(!deleted)
-        closeModel()
+      setDeleted(!deleted)
+      closeModel();
+      toast.success('Edited Successfully')
+    }
+      catch(e){
+        toast.error('Invalid data')
+      }
+      
+
       }
      
     function editHandler() {
@@ -197,6 +209,7 @@ export function ViewCustomerData() {
     return (
         <div className='container'>
            { viewModle&&<LocalModel childComponent={editHandler} heading={`Edit model for Customer: ${modelObj[0]}`}></LocalModel>}
+           <ToastContainer />
             <h1 className={`r text-warning ${styles.head}`}>Customer Data</h1>
             <div className={styles.navBar} >
 

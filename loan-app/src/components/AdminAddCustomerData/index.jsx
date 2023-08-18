@@ -4,6 +4,8 @@ import SideMenuAdmin from "../SideMenuAdmin";
 import styles from './style.module.css';
 import { useRef } from "react";
 import { EmpRegister } from "../request";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function AdminAddCustomerData() {
   const empId = useRef('');
   const empName = useRef('');
@@ -12,7 +14,7 @@ function AdminAddCustomerData() {
   const dob = useRef('');
   const department=useRef('')
   const doj = useRef('');
-  // const [loanDetails, updateDetails] = useState({});
+const [reset, setReset] = useState(true);
 useEffect(()=>{
 
   designation.current='Maneger';
@@ -22,7 +24,7 @@ useEffect(()=>{
   const handleSubmit = async(e) => {
     e.preventDefault()
     console.log(e.target.empId.value)
-
+try{
     let formData = {
       employee_Id: empId.current,
       employee_Name: empName.current,
@@ -31,18 +33,26 @@ useEffect(()=>{
       date_of_Birth: dob.current,
       date_of_Joining:doj.current,
       department:department.current
+
     }
      const res = await EmpRegister(formData)
-    // empId.current='';
-    // empGender.current='';
-    // empName.current='';
-    // designation.current='';
-    // dob.current='';
-    // // doj.current='';
-    // department='';
-       console.log(res)
+     toast.success('Added')
+     empId.current=''
+     empGender.current='';
+     empName.current='';
+     designation.current='';
+     dob.current='';
+   doj.current='';
+     department.current='';
+     setReset(!reset)
+}
+catch(e){
+  toast.error('Try again')
+}    
 
-    console.log(formData)
+
+      
+
   }
   return (
     <div style={{
@@ -53,7 +63,7 @@ useEffect(()=>{
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat'
     }}>
-
+<ToastContainer/>
       <GeneralNav></GeneralNav>
       <SideMenuAdmin></SideMenuAdmin>
       <h2 className="text-warning">Customer Master Data Details</h2>

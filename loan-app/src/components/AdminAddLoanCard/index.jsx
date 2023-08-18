@@ -4,18 +4,21 @@ import SideMenu from "../SideMenuUser";
 import { useRef } from "react";
 import styles from './style.module.css'
 import { LoanRegister } from "../request";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function AdminAddLoanCard() {
   
   const loanId=useRef('');
   const loanType=useRef('');
   const duration = useRef(0);
+
   useEffect(()=>{
 loanType.current='Furniture'
   })
     const handleSubmit = async(e) => {
     e.preventDefault()
    
-
+try{
     let formData = {
       loan_Id:loanId.current,
   loan_Type:loanType.current,
@@ -24,7 +27,14 @@ loanType.current='Furniture'
    let res= await LoanRegister(formData);
    console.log(res)
     console.log(formData)
+  
+toast.success('Added')
+  
   }
+catch(e){
+  toast.error('Try again')
+}  
+}
   return (
     <div style={{
 
@@ -34,6 +44,7 @@ loanType.current='Furniture'
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat'
     }}>
+      <ToastContainer/>
       <GeneralNav></GeneralNav>
       <SideMenu></SideMenu>
       <h2 class="text-warning">Loan Card Master Data Details</h2>

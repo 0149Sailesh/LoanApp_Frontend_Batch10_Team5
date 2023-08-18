@@ -13,7 +13,8 @@ import LocalModel from '../../Model';
 import { useRef } from 'react';
 import Button from 'react-bootstrap/Button';
 import { PutLoan } from '../../request';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 let keys = ['Loan ID', 'Loan Type', 'Duration', 'Actions']
 
 export function ViewLoanTable() {
@@ -63,9 +64,14 @@ export function ViewLoanTable() {
     }
 
     async function deleteHandler(id) {
-        let res = await DeleteLoan(id);
+       try{ let res = await DeleteLoan(id);
         console.log(res)
         setDeleted(!deleted)
+        toast.success("Deleted")
+    }
+        catch(e){
+            toast.error('Try again')
+        }
         // console.log(id)
     }
     function openModel(value) {
@@ -78,12 +84,15 @@ export function ViewLoanTable() {
         setViewModel(false);
     }
     async function handleSubmit(e) {
+        e.preventDefault()
+
+        try{
         let formData = {
             loan_Id: modelObj[0],
             loan_Type: '',
             duration: ''
         }
-        e.preventDefault()
+      
         if (typeof loanType.current === 'string' || loanType.current instanceof String) {
             formData.loan_Type=loanType.current;
         }
@@ -102,7 +111,11 @@ export function ViewLoanTable() {
         console.log(formData)
         setDeleted(!deleted)
         closeModel()
-
+        toast.success("Edited Successfully")
+}
+catch(e){
+    toast.error("Invaild Data")
+}
     }
 
     function editComponent() {
@@ -142,6 +155,7 @@ export function ViewLoanTable() {
     return (
         <div className='container'>
             {viewModle && <LocalModel childComponent={editComponent} heading={`Edit model for Loan Card: ${modelObj[0]}`}></LocalModel>}
+            <ToastContainer/>
             <h1 className={`r text-warning ${styles.head}`}>Loan Data</h1>
             <div className={styles.navBar} >
 

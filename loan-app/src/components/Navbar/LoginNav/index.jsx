@@ -5,6 +5,8 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function LoginNav() {
   const history = useHistory();
   const [loggedIn, setLoggedIn] = useState(true);
@@ -18,11 +20,13 @@ function LoginNav() {
 
   }, [loggedIn]);
   function logOutHandler(){
+    toast.info('logged out')
     localStorage.clear();
     history.push('/')
   }
   return (
     <Navbar expand="lg" className="bg-danger text-white border-bottom border-5 border-warning ">
+      <ToastContainer/>
       <Container className="text-white">
         <Navbar.Brand className='text-white fs-3 font-weight-bold' href="#home">Loan Admin Management Application</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
