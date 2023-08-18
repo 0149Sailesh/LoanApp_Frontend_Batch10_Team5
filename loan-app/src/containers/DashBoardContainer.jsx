@@ -12,7 +12,8 @@ export function DashBoardContainer() {
             backgroundImage: "url(" + "/icons/newwf.png" + ")",
             backgroundPosition: 'top',
             backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat'
+            backgroundRepeat: 'no-repeat',
+            overflow:'auto'
         }}>
             <GeneralNav></GeneralNav>
             <div className='mt-5 d-flex justify-content-center'>

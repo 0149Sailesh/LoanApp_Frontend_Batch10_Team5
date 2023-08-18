@@ -7,7 +7,15 @@ import styles from './style.module.css'
 import { ADMIN_REGISTER } from '../url'
 import { useState } from 'react'
 import { useHistory } from "react-router-dom"
+import { useEffect } from 'react'
 function RegisterPage() {
+  useEffect(async () => {
+
+    if (localStorage.getItem('Token')) {
+      history.push('/dash-board')
+    } 
+
+  }, []);
   const history=useHistory()
   const [passValidate, setPassValidate] = useState(false)
   const emailRef = useRef();
