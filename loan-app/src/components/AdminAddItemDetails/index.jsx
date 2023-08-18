@@ -97,7 +97,7 @@ function AdminAddItemDetails() {
           <br></br>
           
           <div className={`${styles.buttonContainer}`}>
-            <button type="submit" class="btn text-warning fw-bold bg-danger">Apply loan</button>
+            <button type="submit" class="btn text-warning fw-bold bg-danger">Add item</button>
           </div>
 
         </form>

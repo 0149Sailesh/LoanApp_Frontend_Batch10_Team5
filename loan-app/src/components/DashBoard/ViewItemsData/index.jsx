@@ -32,12 +32,12 @@ export function ViewItemsData() {
       e.preventDefault()
 
       let formData = {
-        item_Id: e.target.itemId.value,
-        item_Category: e.target.itemCategory.value,
-        item_Description: e.target.itemDescription.value,
-        item_Valuation: Number(e.target.itemValue.value),
-        item_Make: e.target.itemMake.value,
-        issue_Status: e.target.itemStatus.value
+       item_Id:modelState[0],
+        item_Category: e.target.itemCategory?.value || modelState[4],
+        item_Description: e.target.itemDescription?.value || modelState[1],
+        item_Valuation: Number(e.target.itemValue?.value)|| modelState[5],
+        item_Make: e.target.itemMake?.value|| modelState[3],
+        issue_Status: e.target.itemStatus?.value|| modelState[2],
       }
       console.log("Form data is", formData)
       let res = await EditItem(formData)
@@ -53,7 +53,8 @@ export function ViewItemsData() {
     }
 
   }
-  function openModel() {
+  function openModel(val) {
+    setModelState(val);
     setViewModel(true)
   }
   function closeModel() {
@@ -63,13 +64,10 @@ export function ViewItemsData() {
     return (
       <form className={`${styles.loanForm}`} >
         <div class="row">
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">Item id</label>
-            <input required type="text" name="itemId" class="form-control" id="inputEmail4" placeholder="Item id" />
-          </div>
-          <div class="form-group col-md-6">
+         
+          <div class="form-group col-md-12">
             <label for="inputState">Item Category</label>
-            <select name="itemCategory" id="inputState" class="form-control">
+            <select defaultValue={modelState[2]} name="itemCategory" id="inputState" class="form-control">
               <option selected>Furniture</option>
               <option>Crockery</option>
             </select>
@@ -79,11 +77,11 @@ export function ViewItemsData() {
         <div class="row">
           <div class="form-group col-md-9">
             <label for="inputAddress">Item Description</label>
-            <input required type="text" name="itemDescription" class="form-control" id="inputAddress" placeholder="Item description" />
+            <input defaultValue={modelState[3]} required type="text" name="itemDescription" class="form-control" id="inputAddress" placeholder="Item description" />
           </div>
           <div class="form-group col-md-3">
             <label for="inputState2">Status</label>
-            <select id="inputState2" name="itemStatus" class="form-control">
+            <select defaultValue={modelState[4]} id="inputState2" name="itemStatus" class="form-control">
               <option selected>S</option>
               <option>N</option>
             </select>
@@ -93,11 +91,11 @@ export function ViewItemsData() {
         <div class="row">
           <div class="form-group col-md-6">
             <label for="inputCity">Item value</label>
-            <input required type="text" name="itemValue" class="form-control" id="inputCity" />
+            <input defaultValue={modelState[5]} required type="text" name="itemValue" class="form-control" id="inputCity" />
           </div>
           <div class="form-group col-md-6">
             <label for="inputState2">Item Make</label>
-            <select id="inputState2" name="itemMake" class="form-control">
+            <select defaultValue={modelState[6]} id="inputState2" name="itemMake" class="form-control">
               <option selected>Opt1</option>
               <option>Opt2</option>
             </select>
@@ -167,7 +165,7 @@ export function ViewItemsData() {
 
   return (
     <div className='container'>
-      {viewModle && <LocalModel childComponent={editComponent} closeModel={closeModel}></LocalModel>}
+      {viewModle && <LocalModel childComponent={editComponent} closeModel={closeModel} heading={`Edit model for item :${modelState[0]}`}></LocalModel>}
 
       <ToastContainer />
       <h1 className={`r text-warning ${styles.head}`}>Items Data</h1>

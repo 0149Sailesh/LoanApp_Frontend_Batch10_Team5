@@ -79,7 +79,7 @@ export function ViewCustomerData() {
         setViewModel(false);
     } const handleSubmit = async(e) => {
         e.preventDefault()
-    
+        
     
         let formData = {
           employee_Id: modelObj[0],
@@ -90,6 +90,25 @@ export function ViewCustomerData() {
           date_of_Joining:doj.current,
           department:department.current,
           password: "string"
+        }
+        if (typeof formData.employee_Name !== 'string') {
+            formData.employee_Name=modelObj[1]
+        }
+        if (typeof formData.employee_Gender !== 'string') {
+            formData.employee_Gender=modelObj[2]
+        }
+
+        if (typeof formData.date_of_Birth !== 'string') {
+            formData.date_of_Birth=modelObj[5]
+        }
+        if (typeof formData.date_of_Joining !== 'string') {
+            formData.date_of_Joining=modelObj[6]
+        }
+        if (typeof formData.department !== 'string') {
+            formData.department=modelObj[4]
+        }
+         if (typeof formData.designation !== 'string') {
+            formData.designation=modelObj[3]
         }
          const res = await PutEmployee(formData)
         // empId.current='';
@@ -108,13 +127,14 @@ export function ViewCustomerData() {
       }
      
     function editHandler() {
+   
         return (
             <form className={`${styles.loanForm} w-70` } >
                 <div className="row">
 
                     <div className="form-group col-md-12">
                         <label for="empName">Employee Name</label>
-                        <input required type="text" name="empName" className="form-control" id="empname" placeholder="Employee Name" ref={empName} onChange={(e) => empName.current = e.target.value} />
+                        <input required defaultValue={modelObj[1]} type="text" name="empName" className="form-control" id="empname" placeholder="Employee Name" ref={empName} onChange={(e) => empName.current = e.target.value} />
                     </div>
 
 
@@ -124,10 +144,8 @@ export function ViewCustomerData() {
                     
                     <div className="form-group col-md-12">
                         <label for="inputState">Designation</label>
-                        <select name="designation" id="inputState" className="form-control" ref={designation} onChange={(e) => designation.current = e.target.value}>
+                        <select defaultValue={modelObj[3]} name="designation" id="inputState" className="form-control" ref={designation} onChange={(e) => designation.current = e.target.value}>
 
-                            <option id="departure-city" value="" disabled="" selected="">Departure city</option>
-                            <option value="1">Cairo</option>
                             <option value={'Maneger'}>Maneger</option>
                             <option value={'Coder'}>Coder</option>
                         </select>
@@ -138,14 +156,14 @@ export function ViewCustomerData() {
                 <div className="row">
                     <div className="form-group col-md-6">
                         <label for="gender">Gender</label>
-                        <select name="gender" id="gender" className="form-control" ref={empGender} onChange={(e) => { empGender.current = e.target.value; console.log(e.target.value) }}>
+                        <select defaultValue={modelObj[2]} name="gender" id="gender" className="form-control" ref={empGender} onChange={(e) => { empGender.current = e.target.value; console.log(e.target.value) }}>
                             <option selected value={'M'}>Male</option>
                             <option value={'F'}>Female</option>
                         </select>
                     </div>
                     <div className="form-group col-md-6">
                         <label for="dob">Date of Birth</label>
-                        <input id="dob" className="form-control" type="date" ref={dob} onChange={(e) => dob.current = e.target.value} required />
+                        <input defaultValue={modelObj[5]} id="dob" className="form-control" type="date" ref={dob} onChange={(e) => dob.current = e.target.value} required />
                     </div>
 
                 </div>
@@ -154,14 +172,14 @@ export function ViewCustomerData() {
                 <div className="row">
                     <div className="form-group col-md-6">
                         <label for="dept">Department</label>
-                        <select id="dept" name="itemMake" className="form-control" ref={department} onChange={(e) => department.current = e.target.value}>
+                        <select defaultValue={modelObj[4]} id="dept" name="itemMake" className="form-control" ref={department} onChange={(e) => department.current = e.target.value}>
                             <option value='Finance' selected>Finance</option>
                             <option value='Coder'>Coder</option>
                         </select>
                     </div>
                     <div className="form-group col-md-6">
                         <label for="doj">Date of Joining</label>
-                        <input id="doj" className="form-control" type="date" ref={doj} onChange={(e) => doj.current = e.target.value} required />
+                        <input defaultValue={modelObj[6]}  id="doj" className="form-control" type="date" ref={doj} onChange={(e) => doj.current = e.target.value} required />
                     </div>
 
                 </div>

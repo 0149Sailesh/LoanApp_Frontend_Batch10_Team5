@@ -79,8 +79,6 @@ useEffect(()=>{
               <label for="inputState">Designation</label>
               <select name="designation" id="inputState" className="form-control" ref={designation} onChange={(e) => designation.current = e.target.value}>
                 
-              <option id="departure-city" value="" disabled="" selected="">Departure city</option>
-                    <option value="1">Cairo</option>
                 <option  value={'Maneger'}>Maneger</option>
                 <option value={'Coder'}>Coder</option>
               </select>
