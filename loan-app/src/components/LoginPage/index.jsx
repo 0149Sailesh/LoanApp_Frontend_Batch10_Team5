@@ -3,7 +3,7 @@ import LoginNav from '../Navbar/LoginNav'
 import SideMenu from '../SideMenuUser'
 import styles from './style.module.css'
 import { useEffect } from 'react'
-import { GetAllAdmins, AdminLogin } from '../request'
+import { GetAllAdmins, AdminLogin, LoginEmployee } from '../request'
 import { useHistory } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -27,22 +27,42 @@ function LoginPage() {
 
   }, []);
   const loginFunc = async (data) => {
-try{    const res = await AdminLogin(data)
+    try{
+      const res = await AdminLogin(data)
 
-    console.log(res)
-    localStorage.setItem('Token',res.data.tokenDet)
-    localStorage.setItem('user', JSON.stringify(res.data.userDet))
-    toast.success('Logged in')
-  }
-    catch(e){
-toast.error('try again')
+      console.log(res)
+    
+        localStorage.setItem('Token',res.data.tokenDet)
+        localStorage.setItem('user', JSON.stringify(res.data.userDet))
+        localStorage.setItem('user_role', res.data.user_role)
+
+        toast.success('Admin Login Successful')
+        history.push('/dash-board')
+    } catch(e){
+      if(e.response.status==404){
+        try{
+          const response = await LoginEmployee(data);
+        console.log(response);
+        localStorage.setItem('Token',response.data.tokenDet)
+        localStorage.setItem('user', JSON.stringify(response.data.userDet))
+        localStorage.setItem('user_role', response.data.user_role)
+         
+        toast.success('User Login Successful')
+        history.push('/dash-board')
+        } catch(erro){
+          if(erro.response.status==404){
+            toast.error('Invalid Credentials!')
+          }
+        }
+      }
     }
+    
 
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    try{
+  
      
     let formData = {
       username: e.target.userName.value,
@@ -51,21 +71,10 @@ toast.error('try again')
     }
     console.log(formData)
 
-    const res = await loginFunc(formData)
-
-    
-
-    history.push('/dash-board')
-    } catch(err){
-      if(err.response.status==404){
-        toast.error('Incorrect Credentials!')
-      }
+     loginFunc(formData);
       
     }
-    
-
-
-  }
+  
   return (
     <div>
       <LoginNav></LoginNav>
