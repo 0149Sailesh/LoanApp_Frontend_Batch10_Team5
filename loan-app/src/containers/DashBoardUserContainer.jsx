@@ -40,7 +40,7 @@ export function DashBoardUserContainer() {
                             bulk of the card's content.
                         </Card.Text>
                         <div className='d-flex justify-content-evenly'>
-                            <Nav.Link href='/admin-AddLoanCard' className='btn px-3 py-2  mt-2 mr-1 bg-danger text-warning border-0 fw-bold' variant="primary">Apply</Nav.Link>
+                            <Nav.Link href='/user/apply-loan' className='btn px-3 py-2  mt-2 mr-1 bg-danger text-warning border-0 fw-bold' variant="primary">Apply</Nav.Link>
                          
                         </div>
                     </Card.Body>

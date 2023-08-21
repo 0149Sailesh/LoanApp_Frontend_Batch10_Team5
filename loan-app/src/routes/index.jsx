@@ -44,6 +44,7 @@ function Switches() {
           exact
           path={route.url}
           key={route.url}
+          role={route.role}
         >
           {route.component}
         </PrivateRoute>
@@ -54,7 +55,7 @@ function Switches() {
 }
 
 function PrivateRoute({
-  children, exact, path
+  children, exact, path, role
 }) {
   const [loggedIn, setLoggedIn] = useState(true);
   useEffect(async () => {
@@ -68,6 +69,15 @@ function PrivateRoute({
       }
       else{
         console.log('hitting true')
+        let user_role = localStorage.getItem('user_role');
+
+        if(role!=user_role){
+          console.log('Current user doesnt hv access to the page');
+          localStorage.clear()
+          setLoggedIn(false)
+        } else {
+          console.log("Role matches")
+        }
       }
     } else {
     

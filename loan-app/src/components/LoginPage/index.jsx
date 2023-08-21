@@ -1,6 +1,5 @@
 import React from 'react'
 import LoginNav from '../Navbar/LoginNav'
-import SideMenu from '../SideMenuUser'
 import styles from './style.module.css'
 import { useEffect } from 'react'
 import { GetAllAdmins, AdminLogin, LoginEmployee } from '../request'
@@ -48,7 +47,7 @@ function LoginPage() {
         localStorage.setItem('user_role', response.data.user_role)
          
         toast.success('User Login Successful')
-        history.push('/dash-board')
+        history.push('/user/dash-board')
         } catch(erro){
           if(erro.response.status==404){
             toast.error('Invalid Credentials!')

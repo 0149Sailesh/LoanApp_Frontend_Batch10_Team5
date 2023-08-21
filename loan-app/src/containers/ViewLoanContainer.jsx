@@ -1,5 +1,5 @@
 import React from 'react';
-import SideMenu from '../components/SideMenuUser';
+import SideMenuAdmin from '../components/SideMenuAdmin';
 import LoginNav from '../components/Navbar/LoginNav';
 import { Footer } from '../components/Footer';
 import { ViewLoanTable } from '../components/DashBoard/ViewLoanData';
@@ -8,7 +8,7 @@ export function ViewLoanContainer() {
     <div>
       <LoginNav/>
       <ViewLoanTable/>
-      <SideMenu/>
+      <SideMenuAdmin/>
       <Footer/>
     </div>
   );

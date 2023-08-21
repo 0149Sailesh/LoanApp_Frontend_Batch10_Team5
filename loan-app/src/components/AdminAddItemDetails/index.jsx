@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import GeneralNav from "../Navbar/GeneralNav";
-import SideMenu from "../SideMenuUser";
+import SideMenuAdmin from "../SideMenuAdmin";
 import styles from './style.module.css'
 import { AddItem } from "../request";
 import { ToastContainer, toast } from "react-toastify";
@@ -45,7 +45,7 @@ function AdminAddItemDetails() {
       backgroundRepeat: 'no-repeat'
     }}>
       <GeneralNav></GeneralNav>
-      <SideMenu></SideMenu>
+      <SideMenuAdmin></SideMenuAdmin>
       <ToastContainer/>
       <h2 class="text-warning">Item Master Data Details</h2>
       <div className={`container text-white ${styles.formContainer}`}>

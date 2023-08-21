@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import GeneralNav from "../Navbar/GeneralNav";
-import SideMenu from "../SideMenuUser";
+import SideMenuAdmin from "../SideMenuAdmin";
 import { useRef } from "react";
 import styles from './style.module.css'
 import { LoanRegister } from "../request";
@@ -46,7 +46,7 @@ catch(e){
     }}>
       <ToastContainer/>
       <GeneralNav></GeneralNav>
-      <SideMenu></SideMenu>
+      <SideMenuAdmin></SideMenuAdmin>
       <h2 class="text-warning">Loan Card Master Data Details</h2>
       <div className={`container text-white ${styles.formContainer}`}>
 

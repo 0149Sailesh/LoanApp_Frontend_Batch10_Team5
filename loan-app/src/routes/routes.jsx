@@ -11,7 +11,19 @@ import AdminAddLoanCardContainer from '../containers/AdminAddLoanCardContainer';
 import AdminAddItemDetailsContainer from '../containers/AdminAddItemDetailsContainer';
 import { DashBoardUserContainer } from '../containers/DashBoardUserContainer';
 import ApplyLoanUserContainer from '../containers/ApplyLoanUserContainer';
+import { ViewAppliedLoansContainer } from '../containers/ViewAppliedLoans';
+import { ViewPurchasedItemsContainer } from '../containers/ViewPurchasedItems';
 export const publicRoutes = [
+  {
+    url: '/user/view-items',
+    component: ViewPurchasedItemsContainer, 
+    name: 'ViewPurchasedItems'
+  },
+  {
+    url: '/user/view-loan',
+    component: ViewAppliedLoansContainer,
+    name: 'ViewAppliedLoansContainer'
+  },
   { url: '/user/apply-loan',
   component: ApplyLoanUserContainer,
   name: 'ApplyLoanUserContainer'
@@ -21,8 +33,6 @@ export const publicRoutes = [
   component: DashBoardUserContainer,
   name: 'DashBoardUserContainer'
 },
-
-
    { url: '/',
     component: LoginPageContainer,
     name: 'LoginPageContainer'
@@ -39,39 +49,47 @@ export const privateRoutes = [
   {
     url: '/dash-board',
     component: DashBoardContainer,
-    name: 'DashBoardContainer'
+    name: 'DashBoardContainer',
+    role: 'admin'
   },
 
   { url: '/view-loan',
   component: ViewLoanContainer,
-  name: 'ViewLoanContainer'
+  name: 'ViewLoanContainer',
+  role: 'admin'
 },
 { url: '/view-customers',
 component: ViewCustomerContainer ,
-name: 'ViewCustomerContainer'
+name: 'ViewCustomerContainer',
+role: 'admin'
 },{
 url: '/view-items',
 component: ViewItemsContainer ,
-name: 'ViewCustomerContainer'
+name: 'ViewCustomerContainer',
+role: 'admin'
 },
   {
     url: '/loanApply',
     component:LoanApplyContainer,
-    name: 'LoanApplyContainer'
+    name: 'LoanApplyContainer',
+    role: 'admin'
   },
   {
     url: '/admin-AddCustomerData',
     component: AdminAddCustomerDataContainer,
-    name : 'AdminCustomerDataContainer'
+    name : 'AdminCustomerDataContainer',
+    role: 'admin'
   },
   {
     url: '/admin-AddLoanCard',
     component: AdminAddLoanCardContainer,
-    name: 'AddAdminLoanCardContainer'
+    name: 'AddAdminLoanCardContainer',
+    role: 'admin'
   },
   {
     url: '/admin-AddItemDetails',
     component: AdminAddItemDetailsContainer,
-    name: 'AddAdminItemDetailsContainer'
+    name: 'AddAdminItemDetailsContainer',
+    role: 'admin'
   }
 ];

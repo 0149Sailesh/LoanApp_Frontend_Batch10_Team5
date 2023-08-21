@@ -1,6 +1,6 @@
 import React from 'react';
 import { ViewCustomerData } from '../components/DashBoard/ViewCustomerData';
-import SideMenu from '../components/SideMenuUser';
+import SideMenuAdmin from '../components/SideMenuAdmin';
 import { Footer } from '../components/Footer';
 import LoginNav from '../components/Navbar/LoginNav';
 
@@ -9,7 +9,7 @@ export function ViewCustomerContainer() {
     <div>
       <LoginNav/>
       <ViewCustomerData/>
-      <SideMenu/>
+      <SideMenuAdmin/>
       <Footer/>
     </div>
   );

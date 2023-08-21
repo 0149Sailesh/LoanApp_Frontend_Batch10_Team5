@@ -1,7 +1,7 @@
 import React from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Card from 'react-bootstrap/Card';
-import SideMenu from '../components/SideMenuUser';
+import SideMenuAdmin from '../components/SideMenuAdmin';
 import GeneralNav from '../components/Navbar/GeneralNav';
 import { Footer } from '../components/Footer';
 export function DashBoardContainer() {
@@ -59,7 +59,7 @@ export function DashBoardContainer() {
                         </div>
                     </Card.Body>
                 </Card>
-                <SideMenu></SideMenu>
+                <SideMenuAdmin></SideMenuAdmin>
 
             </div>
         
