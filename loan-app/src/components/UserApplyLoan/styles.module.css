@@ -1,0 +1,36 @@
+.formContainer{
+    background-color: #EC6A6C;
+     width: 30%;
+     border-radius: 5px;
+     box-shadow: #A4161A 0px 8px 24px;
+ }
+ 
+ button{
+    
+     margin: 0 auto;
+ }
+ 
+ .buttonContainer{
+     display: flex;
+     justify-content: center;
+ }
+ 
+ button{
+     margin-top: 30px;
+ }
+ 
+ .form-group{
+     margin-top: 30px;
+ }
+ 
+ .loanForm{
+     padding: 20px;
+   
+ 
+ }
+ 
+ h2{
+     text-align: center;
+     padding: 25px;
+ }
+ 

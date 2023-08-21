@@ -49,7 +49,7 @@ export const GetAllAdmins=()=>axios.get(GET_ALL_ADMINS, getHeader())
 export const GetAllEmployee=()=>axios.get(GET_ALL_EMPLOYEE, getHeader())
 //Items
 export const AddItem = (data) => axios.post(ADD_ITEM, data)
-export const GetAllItems = ()=> axios.get(GET_ALL_ITEMS)
+export const GetAllItems = ()=> axios.get(GET_ALL_ITEMS, getHeader())
 export const DeleteItem = (id) => axios.delete(`${DELETE_ITEM}/${id}`)
 export const EditItem = (data) => axios.put(UPDATE_ITEM, data, getHeader())
 export const PutLoan=(data)=>axios.put(PUT_LOAN, data)

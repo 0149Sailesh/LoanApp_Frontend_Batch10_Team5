@@ -89,6 +89,8 @@ function AdminAddItemDetails() {
               <select id="inputState2" name="itemMake" class="form-control">
                 <option selected>Opt1</option>
                 <option>Opt2</option>
+                <option>ceramic</option>
+                <option>stainless steel</option>
               </select>
             </div>
 
