@@ -19,3 +19,4 @@ export const PUT_LOAN=`${BACKEND_URL}/api/LoanCardMaster/EditLoanCard`
 export const GET_ALL_EMPLOYEE=`${BACKEND_URL}/api/EmployeeMaster/GetAllEmployees`
 export const DELETE_EMPLOYEE=`${BACKEND_URL}/api/EmployeeMaster/DeleteEmployee`
 export const PUT_EMPLOYEE=`${BACKEND_URL}/api/EmployeeMaster/EditEmployee`
+export const LOGIN_EMPLOYEE = `${BACKEND_URL}/api/EmployeeMaster/LoginEmployee`
