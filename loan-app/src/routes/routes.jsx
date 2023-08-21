@@ -9,7 +9,18 @@ import LoanApplyContainer from '../containers/LoanApplyContainer';
 import AdminAddCustomerDataContainer from '../containers/AdminAddCustomerDataContainer';
 import AdminAddLoanCardContainer from '../containers/AdminAddLoanCardContainer';
 import AdminAddItemDetailsContainer from '../containers/AdminAddItemDetailsContainer';
+import { DashBoardUserContainer } from '../containers/DashBoardUserContainer';
+import ApplyLoanUserContainer from '../containers/ApplyLoanUserContainer';
 export const publicRoutes = [
+  { url: '/user/apply-loan',
+  component: ApplyLoanUserContainer,
+  name: 'ApplyLoanUserContainer'
+},
+
+  { url: '/user/dash-board',
+  component: DashBoardUserContainer,
+  name: 'DashBoardUserContainer'
+},
 
 
    { url: '/',
