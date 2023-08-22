@@ -82,7 +82,7 @@ export function ViewItemsData() {
           <div class="form-group col-md-3">
             <label for="inputState2">Status</label>
             <select defaultValue={modelState[4]} id="inputState2" name="itemStatus" class="form-control">
-              <option selected>S</option>
+              <option selected>Y</option>
               <option>N</option>
             </select>
           </div>

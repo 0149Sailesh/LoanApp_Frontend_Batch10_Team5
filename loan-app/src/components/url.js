@@ -24,3 +24,12 @@ export const LOGIN_EMPLOYEE = `${BACKEND_URL}/api/EmployeeMaster/LoginEmployee`
 //Employee Items
 export const GET_APPLIED_LOANS = `${BACKEND_URL}/api/EmployeeMaster/GetAllEmployeesLoanCard`
 export const GET_PURCHASED_ITEMS = `${BACKEND_URL}/api/EmployeeMaster/GetAllEmployeesItemPurchase`
+
+
+
+
+
+//user
+
+
+export const APPLY_LOAN=`${BACKEND_URL}/api/ApplyLoan`

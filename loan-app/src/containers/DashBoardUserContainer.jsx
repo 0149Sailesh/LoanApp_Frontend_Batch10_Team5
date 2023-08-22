@@ -18,7 +18,7 @@ export function DashBoardUserContainer() {
             <GeneralNav></GeneralNav>
             <div className='mt-5 d-flex justify-content-center'>
                 <Card style={{ width: '18rem' }} className='p-4 m-4'>
-                    <Card.Img variant="top" src="icons/loan-ig.png" height={140} className='px-5' />
+                    <Card.Img variant="top" src="/icons/loan-ig.png" height={140} className='px-5' />
                     <Card.Body className='d-flex justify-content-center flex-column'>
                         <Card.Title>View Loan</Card.Title>
                         <Card.Text>
@@ -32,7 +32,7 @@ export function DashBoardUserContainer() {
                     </Card.Body>
                 </Card>
                 <Card style={{ width: '18rem' }} className='p-4 m-4'>
-                    <Card.Img variant="top" src="icons/loan-ig.png" height={140} className='px-5' />
+                    <Card.Img variant="top" src="/icons/loan-ig.png" height={140} className='px-5' />
                     <Card.Body className='d-flex justify-content-center flex-column'>
                         <Card.Title>Apply For Loan</Card.Title>
                         <Card.Text>
@@ -46,7 +46,7 @@ export function DashBoardUserContainer() {
                     </Card.Body>
                 </Card>
                 <Card style={{ width: '18rem' }} className='p-4 m-4'>
-                    <Card.Img variant="top" src="icons/cart.png" height={140} className='px-5' />
+                    <Card.Img variant="top" src="/icons/cart.png" height={140} className='px-5' />
                     <Card.Body className='d-flex justify-content-center flex-column'>
                         <Card.Title>View Items</Card.Title>
                         <Card.Text>

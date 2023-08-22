@@ -12,7 +12,7 @@ export function Footer() {
             <div className='d-flex  align-items-center w-100 justify-content-center'>
 
                 <div className={styles.logo}>
-                    <img src='icons/footer-logo.png' height={80} width={140} />
+                    <img src='/icons/footer-logo.png' height={80} width={140} />
                 </div>
                 <div className={`${styles.nav}`}>
                     <div className={styles.navElement}>About  </div>

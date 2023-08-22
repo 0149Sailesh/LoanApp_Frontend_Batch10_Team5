@@ -2,7 +2,11 @@ import axios from 'axios'
 
 import { GET_ALL_ADMINS, ADMIN_LOGIN, GET_ADMIN, EMPLOYEE_REGISTER, LOAN_REGISTER, PUT_EMPLOYEE,
      GET_ALL_LOAN, DELETE_LOAN, ADD_ITEM, GET_ALL_ITEMS, DELETE_ITEM, UPDATE_ITEM, PUT_LOAN,
+<<<<<<< HEAD
       GET_ALL_EMPLOYEE, DELETE_EMPLOYEE, LOGIN_EMPLOYEE, GET_PURCHASED_ITEMS, GET_APPLIED_LOANS} from './url'
+=======
+      GET_ALL_EMPLOYEE, DELETE_EMPLOYEE, LOGIN_EMPLOYEE, APPLY_LOAN} from './url'
+>>>>>>> 17dee19 (fix:intergration with loanapply)
 
 
 
@@ -61,3 +65,7 @@ export const LoginEmployee = (data)=>axios.post(LOGIN_EMPLOYEE, data)
 //Employee items
 export const GetEmployeePurchased = (id)=> axios.get(`${GET_PURCHASED_ITEMS}/${id}`)
 export const GetEmployeeLoans = (id) => axios.get(`${GET_APPLIED_LOANS}/${id}`)
+
+//User
+
+export const ApplyLoan =(data)=>axios.post(APPLY_LOAN, data)

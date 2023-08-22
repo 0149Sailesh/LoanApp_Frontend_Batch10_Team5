@@ -73,7 +73,7 @@ function AdminAddItemDetails() {
             <div class="form-group col-md-3">
               <label for="inputState2">Issue Status</label>
               <select id="inputState2" name="itemStatus" class="form-control">
-                <option selected>S</option>
+                <option selected>Y</option>
                 <option>N</option>
               </select>
             </div>

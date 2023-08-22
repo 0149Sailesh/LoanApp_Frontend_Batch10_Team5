@@ -2,11 +2,17 @@ import React, { useState, useEffect } from "react";
 import GeneralNav from "../Navbar/GeneralNav";
 import SideMenu from "../SideMenuUser";
 import styles from './styles.module.css';
-
+import { ApplyLoan } from "../request";
 import { GetAllItems } from "../request";
 function UserLoanApply() {
 
-    
+    const [formData, setFormData]= useState({
+        item_Category:'',
+        item_Description:'',
+        item_Make:'',
+        item_Valuation:'',
+        employee_Id:""
+    })
     const [category, setCategory] = useState({});
     const [make, setMake] = useState({});
     const [displaymake, setDisplayMake] = useState([]);
@@ -36,23 +42,23 @@ function UserLoanApply() {
                 }
 
             }
-            if (make[`${r.item_Make}`] === undefined) {
+            if (make[`${r.item_Make}${r.item_Category}`] === undefined) {
                 let arr = []
                 arr.push([r.item_Valuation, r.item_Description])
-                make[`${r.item_Make}`] = arr;
+                make[`${r.item_Make}${r.item_Category}`] = arr;
             }
             else {
                 let arr = [];
-                arr = make[`${r.item_Make}`];
+                arr = make[`${r.item_Make}${r.item_Category}`];
                 arr.push([r.item_Valuation, r.item_Description])
-                make[`${r.item_Make}`] = arr;
+                make[`${r.item_Make}${r.item_Category}`] = arr;
             }
         }
         console.log(cat)
         console.log(make)
         setMake(make);
         setCategory(cat);
-      
+        setFormData({...formData, item_Category:Object.keys(cat)[0]})
         setDisplayMake(cat[`${res.data[0].item_Category}`]);
         // setDisplayValue(Object.values(make)[0][0][0]);
     //    console.log(Object.values(make)[0][0][0])
@@ -60,20 +66,45 @@ function UserLoanApply() {
 
 
     }, [])
+    function categoryHandler(e){
+        setDisplayMake(category[`${e.target.value}`]); 
+        setIsDes(false);
+         setIsValue(false);
+         setIsMake(false); 
+         setDisplayDes([]); 
+         setDisplayValue('') ;
+         setFormData({...formData, item_Category:e.target.value , item_Description:'', item_Make:'', item_Valuation:''})
+    }
+    function makeHandler(e){
+        setDisplayDes(make[`${e.target.value}${formData.item_Category}`]);
+          setIsMake(true); 
+          setIsDes(false); 
+          setDisplayValue(''); 
+          setIsValue(false);
+          setFormData({...formData, item_Make:e.target.value, item_Description:'' , item_Valuation:''})
+    }
+function desHandler(e){
+    console.log(e.target.value)
+    let arr= e.target.value.split(',')
+    setDisplayValue(arr[0]);
+     setIsValue(true);
+     setIsDes(true);
+      setFormData({...formData, item_Description:arr[1], item_Valuation:arr[0]})
 
-    const handleSubmit = (e) => {
+    }
+    const handleSubmit = async(e) => {
         e.preventDefault()
         console.log(e.target.empId.value)
-
-        let formData = {
-            employeeId: e.target.empId.value,
-            itemCategory: e.target.itemCategory.value,
-            itemDescription: e.target.itemDescription.value,
-            itemValue: Number(e.target.itemValue.value),
-            itemMake: e.target.itemMake.value
-        }
-
         console.log(formData)
+        let res = await ApplyLoan({
+            employee_Id:'1234',
+            item_Category:formData.item_Category,
+            item_Description:formData.item_Description,
+            item_Value: formData.item_Valuation,
+            item_Make:formData.item_Make
+        })
+        console.log(res)
+       
     }
     return (
         <div style={{
@@ -97,7 +128,7 @@ function UserLoanApply() {
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputState">Item Category</label>
-                            <select name="itemCategory" id="inputState" class="form-control" onChange={(e)=>{setDisplayMake(category[`${e.target.value}`]); setIsDes(false); setIsValue(false);setIsMake(false); setDisplayDes([]); setDisplayValue('')}}>
+                            <select required name="itemCategory" id="inputState" class="form-control" onChange={(e)=>categoryHandler(e)}>
                                 {Object.keys(category).map((i) => <option value={i}>{i}</option>)}
                             </select>
                         </div>
@@ -107,7 +138,7 @@ function UserLoanApply() {
 
                         <div class="form-group col-md-12">
                             <label for="inputState2">Item Make</label>
-                            <select id="inputState2" name="itemMake" class="form-control" onChange={(e)=>{setDisplayDes(make[`${e.target.value}`]);  setIsMake(true); setIsDes(false); setDisplayValue(''); setIsValue(false)}}>
+                            <select required id="inputState2" name="itemMake" class="form-control" onChange={(e)=>makeHandler(e)}>
                             {!isMake && <option selected>Select Make</option>}
                                 {displaymake.map((i) => <option value={i}>{i}</option>)}
                                 
@@ -117,10 +148,10 @@ function UserLoanApply() {
                     <br></br>
                     <div class="form-group">
                         <label for="des">Item Description</label>
-                        <select id="des" name="des" class="form-control" onChange={(e)=>{setDisplayValue(e.target.value); setIsValue(true);setIsDes(true)}}>
+                        <select required id="des" name="des" class="form-control" onChange={(e)=>desHandler(e)}>
                         {!isdes && displayDes.length===0&& <option selected>Select Make to view Description</option>}
                                {!isdes && displayDes.length>0 && <option selected>Select Item Description</option>}
-                                {displayDes.length>0&& displayDes.map(( x) => <option value={x[0]}>{x[1]}</option>)}
+                                {displayDes.length>0&& displayDes.map(( x) => <option value={x}>{x[1]}</option>)}
                             </select>
                     </div>
                     <br></br>
@@ -133,7 +164,7 @@ function UserLoanApply() {
                         <br></br>
                     </div>
                     <div className={`${styles.buttonContainer}`}>
-                        <button type="submit" class="btn text-warning bg-danger">Apply loan</button>
+                        <button type="submit" class={displayValue===''?' bg-gray text-white btn' :'btn text-warning bg-danger'} disabled={displayValue===''}>Apply loan</button>
                     </div>
 
                 </form>
