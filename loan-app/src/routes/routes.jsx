@@ -14,25 +14,7 @@ import ApplyLoanUserContainer from '../containers/ApplyLoanUserContainer';
 import { ViewAppliedLoansContainer } from '../containers/ViewAppliedLoans';
 import { ViewPurchasedItemsContainer } from '../containers/ViewPurchasedItems';
 export const publicRoutes = [
-  {
-    url: '/user/view-items',
-    component: ViewPurchasedItemsContainer, 
-    name: 'ViewPurchasedItems'
-  },
-  {
-    url: '/user/view-loan',
-    component: ViewAppliedLoansContainer,
-    name: 'ViewAppliedLoansContainer'
-  },
-  { url: '/user/apply-loan',
-  component: ApplyLoanUserContainer,
-  name: 'ApplyLoanUserContainer'
-},
-
-  { url: '/user/dash-board',
-  component: DashBoardUserContainer,
-  name: 'DashBoardUserContainer'
-},
+  
    { url: '/',
     component: LoginPageContainer,
     name: 'LoginPageContainer'
@@ -46,6 +28,30 @@ export const publicRoutes = [
 ];
 
 export const privateRoutes = [
+  {
+    url: '/user/view-items',
+    component: ViewPurchasedItemsContainer, 
+    name: 'ViewPurchasedItems',
+    role:'user'
+
+  },
+  {
+    url: '/user/view-loan',
+    component: ViewAppliedLoansContainer,
+    name: 'ViewAppliedLoansContainer',
+    role:'user'
+  },
+  { url: '/user/apply-loan',
+  component: ApplyLoanUserContainer,
+  name: 'ApplyLoanUserContainer',
+  role:'user'
+},
+
+  { url: '/user/dash-board',
+  component: DashBoardUserContainer,
+  name: 'DashBoardUserContainer',
+  role:'user'
+},
   {
     url: '/dash-board',
     component: DashBoardContainer,

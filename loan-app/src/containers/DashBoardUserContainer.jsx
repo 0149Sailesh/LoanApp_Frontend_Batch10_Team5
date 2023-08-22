@@ -27,7 +27,7 @@ export function DashBoardUserContainer() {
                         </Card.Text>
                         <div className='d-flex justify-content-evenly'>
                             
-                            <Nav.Link href='/view-customers'  className='btn px-3 py-2 mt-2 ml-1 bg-danger text-warning border-0 fw-bold' variant="primary">View</Nav.Link>
+                            <Nav.Link href='/user/view-loan'  className='btn px-3 py-2 mt-2 ml-1 bg-danger text-warning border-0 fw-bold' variant="primary">View</Nav.Link>
                         </div>
                     </Card.Body>
                 </Card>
@@ -55,7 +55,7 @@ export function DashBoardUserContainer() {
                         </Card.Text>
                         <div className='d-flex justify-content-evenly'>
                            
-                            <Nav.Link href='/view-items' className='   btn px-3 py-2 mt-2 ml-1 bg-danger text-warning border-0 fw-bold' variant="primary">View</Nav.Link>
+                            <Nav.Link href='/user/view-items' className='   btn px-3 py-2 mt-2 ml-1 bg-danger text-warning border-0 fw-bold' variant="primary">View</Nav.Link>
                         </div>
                     </Card.Body>
                 </Card>
