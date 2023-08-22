@@ -30,18 +30,18 @@ export function ViewItemsData() {
     try {
       console.log("try block")
       e.preventDefault()
-
+      console.log('category', e.target.itemCategory.value )
       let formData = {
        item_Id:modelState[0],
-        item_Category: e.target.itemCategory?.value || modelState[4],
-        item_Description: e.target.itemDescription?.value || modelState[1],
-        item_Valuation: Number(e.target.itemValue?.value)|| modelState[5],
-        item_Make: e.target.itemMake?.value|| modelState[3],
-        issue_Status: e.target.itemStatus?.value|| modelState[2],
+        item_Category: e.target.itemCategory.value ,
+        item_Description: e.target.itemDescription.value ,
+        item_Valuation: Number(e.target.itemValue.value),
+        item_Make: e.target.itemMake.value,
+        issue_Status: e.target.itemStatus.value,
       }
       console.log("Form data is", formData)
       let res = await EditItem(formData)
-      toast.success('Item Added Successfully')
+      toast.success('Item Edited Successfully')
       console.log(res)
 
       FetchAllItems()
@@ -62,7 +62,7 @@ export function ViewItemsData() {
   }
   const editComponent = () => {
     return (
-      <form className={`${styles.loanForm}`} >
+      <form className={`${styles.loanForm}`} onSubmit={handleEdit} >
         <div class="row">
          
           <div class="form-group col-md-12">
@@ -106,7 +106,7 @@ export function ViewItemsData() {
        
         <div className={`${styles.buttonContainer}`}>
         <Button variant="secondary" className='mr-3' onClick={closeModel}>Close</Button>
-          <Button  onClick={handleEdit} className={styles.btnModel}>Save changes</Button>
+          <Button type='submit' className={styles.btnModel}>Save changes</Button>
          
         </div>
       </form>

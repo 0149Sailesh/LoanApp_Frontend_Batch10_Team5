@@ -1,5 +1,5 @@
 import React from 'react';
-import SideMenu from '../components/SideMenuUser';
+import SideMenuAdmin from '../components/SideMenuAdmin';
 import LoginNav from '../components/Navbar/LoginNav';
 import { Footer } from '../components/Footer';
 import { ViewItemsData } from '../components/DashBoard/ViewItemsData';
@@ -8,7 +8,7 @@ export function ViewItemsContainer() {
     <div>
       <LoginNav/>
       <ViewItemsData/>
-      <SideMenu/>
+      <SideMenuAdmin/>
       <Footer/>
     </div>
   );

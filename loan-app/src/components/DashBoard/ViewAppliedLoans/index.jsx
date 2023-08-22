@@ -6,20 +6,32 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { ViewTable } from '../../ViewTable';
-import { GetAllItems } from '../../request';
+import { GetEmployeeLoans } from '../../request';
 import { DeleteItem } from '../../request';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LocalModel from '../../Model';
 import { EditItem } from '../../request';
 import Button from 'react-bootstrap/Button';
-let keys = ['Issue ID', 'Descrption', 'Make', 'Category', 'Valuation']
+let keys = ['Loan ID', 'Loan Type', 'Duration', 'Card Issue']
 export function ViewAppliedLoans() {
   const [modelState, setModelState] = useState({})
   const [viewModle, setViewModel] = useState(false)
+
+  const GetEmployeeId = ()=>{
+    let userDet = localStorage.getItem('user');
+    console.log(userDet)
+    userDet = JSON.parse(userDet);
+   
+    let employeeId = userDet.employee_Id;
+    console.log(employeeId)
+    return employeeId
+  }
   const FetchAllItems = async () => {
     console.log("Fetch function called")
-    const res = await GetAllItems();
+
+    const res = await GetEmployeeLoans(GetEmployeeId());
+
     console.log("Response values", res.data)
     setGlobalValue(res.data)
     ObjectToArray(res.data)
@@ -75,7 +87,7 @@ export function ViewAppliedLoans() {
       console.log("For query", value)
       for (let i of value) {
         //console.log(i);
-        if (i.item_Description.toLocaleLowerCase().includes(query.toLocaleLowerCase()) || i.item_Id.toLocaleLowerCase().includes(query.toLocaleLowerCase()))
+        if (i.loan_Type.toLocaleLowerCase().includes(query.toLocaleLowerCase()) || i.loan_Id.toLocaleLowerCase().includes(query.toLocaleLowerCase()))
           res.push(Object.values(i));
       }
       setDisplayValue(res)
@@ -93,7 +105,7 @@ export function ViewAppliedLoans() {
       {viewModle && <LocalModel childComponent={editComponent} closeModel={closeModel} heading={`Edit model for item :${modelState[0]}`}></LocalModel>}
 
       <ToastContainer />
-      <h1 className={`r text-warning ${styles.head}`}>Items Data</h1>
+      <h1 className={`r text-warning ${styles.head}`}>Loan Applied Data</h1>
       <div className={styles.navBar} >
 
         <InputGroup className={styles.searchBar} onChange={(x) => search(x.target.value)}>

@@ -20,3 +20,7 @@ export const GET_ALL_EMPLOYEE=`${BACKEND_URL}/api/EmployeeMaster/GetAllEmployees
 export const DELETE_EMPLOYEE=`${BACKEND_URL}/api/EmployeeMaster/DeleteEmployee`
 export const PUT_EMPLOYEE=`${BACKEND_URL}/api/EmployeeMaster/EditEmployee`
 export const LOGIN_EMPLOYEE = `${BACKEND_URL}/api/EmployeeMaster/LoginEmployee`
+
+//Employee Items
+export const GET_APPLIED_LOANS = `${BACKEND_URL}/api/EmployeeMaster/GetAllEmployeesLoanCard`
+export const GET_PURCHASED_ITEMS = `${BACKEND_URL}/api/EmployeeMaster/GetAllEmployeesItemPurchase`
