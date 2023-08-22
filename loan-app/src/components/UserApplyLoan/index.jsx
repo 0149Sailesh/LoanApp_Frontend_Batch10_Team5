@@ -4,6 +4,9 @@ import SideMenu from "../SideMenuUser";
 import styles from './styles.module.css';
 import { ApplyLoan } from "../request";
 import { GetAllItems } from "../request";
+
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 function UserLoanApply() {
 
     const [formData, setFormData]= useState({
@@ -96,14 +99,21 @@ function desHandler(e){
         e.preventDefault()
         console.log(e.target.empId.value)
         console.log(formData)
-        let res = await ApplyLoan({
-            employee_Id:'1234',
-            item_Category:formData.item_Category,
-            item_Description:formData.item_Description,
-            item_Value: formData.item_Valuation,
-            item_Make:formData.item_Make
-        })
-        console.log(res)
+        try{
+            let res = await ApplyLoan({
+                employee_Id:'1234',
+                item_Category:formData.item_Category,
+                item_Description:formData.item_Description,
+                item_Value: formData.item_Valuation,
+                item_Make:formData.item_Make
+            })
+            console.log(res)
+            toast.success('Application Successfully')
+        }
+        catch(e){
+            toast.error('You are totally wrong ')
+        }
+       
        
     }
     return (
@@ -117,6 +127,7 @@ function desHandler(e){
         }}>
             <GeneralNav></GeneralNav>
             <SideMenu></SideMenu>
+            <ToastContainer/>
             <h2 class="text-warning">Loan Application</h2>
             <div className={`container text-white ${styles.formContainer}`}>
 
