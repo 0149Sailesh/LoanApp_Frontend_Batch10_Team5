@@ -41,27 +41,27 @@ const getUserName = () => {
 // Test route
 export const GetAdmin = () => axios.get(GET_ADMIN, getHeader(), { params: { id: getUserName() } });
 export const AdminLogin = (data) => axios.post(ADMIN_LOGIN, data)
-export const EmpRegister = (data) => axios.post(EMPLOYEE_REGISTER, data);
-export const LoanRegister = (data) => axios.post(LOAN_REGISTER, data);
+export const EmpRegister = (data) => axios.post(EMPLOYEE_REGISTER, data, getHeader());
+export const LoanRegister = (data) => axios.post(LOAN_REGISTER, data, getHeader());
 export const GetAllLoan = () => axios.get(GET_ALL_LOAN, getHeader());
-export const DeleteLoan=(id)=>axios.delete(`${DELETE_LOAN}${'/'}${id}`);
+export const DeleteLoan=(id)=>axios.delete(`${DELETE_LOAN}${'/'}${id}`, getHeader());
 export const GetAllAdmins=()=>axios.get(GET_ALL_ADMINS, getHeader())
 export const GetAllEmployee=()=>axios.get(GET_ALL_EMPLOYEE, getHeader())
 //Items
-export const AddItem = (data) => axios.post(ADD_ITEM, data)
+export const AddItem = (data) => axios.post(ADD_ITEM, data, getHeader())
 export const GetAllItems = ()=> axios.get(GET_ALL_ITEMS, getHeader())
-export const DeleteItem = (id) => axios.delete(`${DELETE_ITEM}/${id}`)
+export const DeleteItem = (id) => axios.delete(`${DELETE_ITEM}/${id}`, getHeader())
 export const EditItem = (data) => axios.put(UPDATE_ITEM, data, getHeader())
-export const PutLoan=(data)=>axios.put(PUT_LOAN, data)
-export const DeleteEmployee=(id)=>axios.delete(`${DELETE_EMPLOYEE}${'/'}${id}`)
+export const PutLoan=(data)=>axios.put(PUT_LOAN, data, getHeader())
+export const DeleteEmployee=(id)=>axios.delete(`${DELETE_EMPLOYEE}${'/'}${id}`, getHeader())
 
 export const PutEmployee= (data)=>axios.put(PUT_EMPLOYEE, data, getHeader())
 export const LoginEmployee = (data)=>axios.post(LOGIN_EMPLOYEE, data)
 
 //Employee items
-export const GetEmployeePurchased = (id)=> axios.get(`${GET_PURCHASED_ITEMS}/${id}`)
-export const GetEmployeeLoans = (id) => axios.get(`${GET_APPLIED_LOANS}/${id}`)
+export const GetEmployeePurchased = (id)=> axios.get(`${GET_PURCHASED_ITEMS}/${id}`, getHeader())
+export const GetEmployeeLoans = (id) => axios.get(`${GET_APPLIED_LOANS}/${id}`, getHeader())
 
 //User
 
-export const ApplyLoan =(data)=>axios.post(APPLY_LOAN, data)
+export const ApplyLoan =(data)=>axios.post(APPLY_LOAN, data, getHeader())

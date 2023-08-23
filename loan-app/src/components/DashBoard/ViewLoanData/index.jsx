@@ -130,6 +130,7 @@ catch(e){
                             <select name="loanType" id="inputState" class="form-control" ref={loanType} onChange={(e) => loanType.current = e.target.value}>
                                 <option value={'Furniture'} >Furniture</option>
                                 <option value={'Crockery'}>Crockery</option>
+                                <option value={'Electronics'}>Electronics</option>
                             </select>
                         </div>
                     </div>
