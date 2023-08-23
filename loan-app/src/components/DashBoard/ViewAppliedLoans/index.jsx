@@ -17,7 +17,8 @@ let keys = ['Loan ID', 'Loan Type', 'Duration', 'Card Issue']
 export function ViewAppliedLoans() {
   const [modelState, setModelState] = useState({})
   const [viewModle, setViewModel] = useState(false)
-
+    const [pageNumber, setPageNumber]= useState(0);
+  const [pageNation, setPageNation]=useState([]);
   const GetEmployeeId = ()=>{
     let userDet = localStorage.getItem('user');
     console.log(userDet)
@@ -38,9 +39,29 @@ export function ViewAppliedLoans() {
       fetchData.push(f)
 
     }
+    let pageArr=[];
+   let onepage=[];
+   let i=0;
+    for (let r of fetchData){
+        if(i===5){
+
+          pageArr.push(onepage);
+          onepage=[];
+          onepage.push(r)
+          i=0;
+        }
+        else {
+          onepage.push(r);
+          i++;
+        }
+    }
+    if(onepage.length!==0){
+      pageArr.push(onepage);
+    }
     console.log("Response values", res.data)
     setGlobalValue(fetchData)
-    ObjectToArray(fetchData)
+    ObjectToArray(pageArr[0])
+    setPageNation(pageArr)
   }
 
   function openModel(val) {
@@ -78,7 +99,7 @@ export function ViewAppliedLoans() {
     console.log(res)
   }
 
-
+  const [focus , setFocus]  = useState(false)
   const [displayValue, setDisplayValue] = useState([])
   const [value, setGlobalValue] = useState([])
   useEffect(() => {
@@ -86,7 +107,28 @@ export function ViewAppliedLoans() {
     //ObjectToArray(value);
   }, []);
 
-
+  function nextPage(){
+    if(pageNumber+1< pageNation.length){
+      
+      ObjectToArray(pageNation[pageNumber+1]);
+      setPageNumber(pageNumber+1);
+    }
+    else{
+      setPageNumber(0);
+      ObjectToArray(pageNation[0])
+    }
+  }
+  function previousPage(){
+    if(pageNumber-1>=0){
+      
+      ObjectToArray(pageNation[pageNumber-1]);
+      setPageNumber(pageNumber-1);
+    }
+    else{
+      setPageNumber(pageNation.length-1);
+      ObjectToArray(pageNation[pageNation.length-1])
+    }
+  }
   function search(query) {
     let res = [];
     if (query !== '') {
@@ -105,6 +147,22 @@ export function ViewAppliedLoans() {
 
     console.log(res)
   }
+  function searchPage(value){
+   let  val =  Number(value);
+    val--
+      if(val>=0 && val<pageNation.length){
+        ObjectToArray(pageNation[val]);
+        setPageNumber(val)
+      }
+      else{
+        if(value!=='')
+        toast.error('Enter Valid Page Number')
+
+        ObjectToArray(pageNation[0]);
+        setPageNumber(0)
+        
+      }
+  }
 
   return (
     <div className='container'>
@@ -121,8 +179,11 @@ export function ViewAppliedLoans() {
             placeholder='Search'
           />
         </InputGroup>
-        <button className={`bg-danger text-warning fw-bold ${styles.btn}`}>{'<'}</button>
-        <button className={`bg-danger text-warning fw-bold ${styles.btn}`}>{'>'}</button>
+        <button className={`bg-danger text-warning fw-bold ${styles.btn}`} onClick={previousPage}>{'<'}</button>
+       {focus && <> <input onTouchEndCapture={()=>setFocus(false)} onBlur={()=>setFocus(false)} type='text' onChange={(e)=>{searchPage(e.target.value)}} className={`${styles.page}`}  defaultValue={1}></input> <span>/{pageNation.length}</span> </>}
+    { !focus &&   <span onClick={()=>setFocus(true)}>{pageNumber+1}/{pageNation.length}</span> }
+        <button className={`bg-danger text-warning fw-bold ${styles.btn}`} onClick={nextPage}>{'>'}</button>
+      
       </div>
 
       <ViewTable keys={keys} values={displayValue} deleteHandler={deleteHandler} modelHandler={openModel} showButton={false} />

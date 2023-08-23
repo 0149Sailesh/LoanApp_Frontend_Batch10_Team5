@@ -1,5 +1,5 @@
 import Table from 'react-bootstrap/Table';
-import React from 'react';
+import React, { useRef } from 'react';
 import styles from './style.module.css';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -17,12 +17,34 @@ let keys = ['Item ID', 'Descrption', 'Status', 'Make', 'Category', 'Valuation', 
 export function ViewItemsData() {
   const [modelState, setModelState] = useState({})
   const [viewModle, setViewModel] = useState(false)
+  const [pageNumber, setPageNumber]= useState(0);
+  const [pageNation, setPageNation]=useState([]);
   const FetchAllItems = async () => {
     console.log("Fetch function called")
     const res = await GetAllItems();
    console.log("Response values", res.data)
+   let pageArr=[];
+   let onepage=[];
+   let i=0;
+    for (let r of res.data){
+        if(i===5){
+
+          pageArr.push(onepage);
+          onepage=[];
+          onepage.push(r)
+          i=0;
+        }
+        else {
+          onepage.push(r);
+          i++;
+        }
+    }
+    if(onepage.length!==0){
+      pageArr.push(onepage);
+    }
+    setPageNation(pageArr);
     setGlobalValue(res.data)
-    ObjectToArray(res.data)
+    ObjectToArray(pageArr[0])
   }
 
   const handleEdit = async (e) => {
@@ -113,6 +135,28 @@ export function ViewItemsData() {
       </form>
     )
   }
+  function nextPage(){
+    if(pageNumber+1< pageNation.length){
+      
+      ObjectToArray(pageNation[pageNumber+1]);
+      setPageNumber(pageNumber+1);
+    }
+    else{
+      setPageNumber(0);
+      ObjectToArray(pageNation[0])
+    }
+  }
+  function previousPage(){
+    if(pageNumber-1>=0){
+      
+      ObjectToArray(pageNation[pageNumber-1]);
+      setPageNumber(pageNumber-1);
+    }
+    else{
+      setPageNumber(pageNation.length-1);
+      ObjectToArray(pageNation[pageNation.length-1])
+    }
+  }
   const deleteHandler = async (id) => {
     try {
       const resp = await DeleteItem(id)
@@ -126,7 +170,7 @@ toast.error('Try again')
 
 
   }
-  function ObjectToArray(val) {
+  function  ObjectToArray(val) {
     let res = [];
     for (let i of val) {
       res.push(Object.values(i));
@@ -136,7 +180,7 @@ toast.error('Try again')
    // console.log(res)
   }
 
-
+  const [focus , setFocus]  = useState(false)
   const [displayValue, setDisplayValue] = useState([])
   const [value, setGlobalValue] = useState([])
   useEffect(() => {
@@ -158,10 +202,26 @@ toast.error('Try again')
 
     }
     else {
-      ObjectToArray(value);
+      ObjectToArray(pageNation[0]);
     }
 
     console.log(res)
+  }
+  function searchPage(value){
+   let  val =  Number(value);
+    val--
+      if(val>=0 && val<pageNation.length){
+        ObjectToArray(pageNation[val]);
+        setPageNumber(val)
+      }
+      else{
+        if(value!=='')
+        toast.error('Enter Valid Page Number')
+
+        ObjectToArray(pageNation[0]);
+        setPageNumber(0)
+        
+      }
   }
 
   return (
@@ -179,8 +239,10 @@ toast.error('Try again')
             placeholder='Search'
           />
         </InputGroup>
-        <button className={`bg-danger text-warning fw-bold ${styles.btn}`}>{'<'}</button>
-        <button className={`bg-danger text-warning fw-bold ${styles.btn}`}>{'>'}</button>
+        <button className={`bg-danger text-warning fw-bold ${styles.btn}`} onClick={previousPage}>{'<'}</button>
+       {focus && <> <input onTouchEndCapture={()=>setFocus(false)} onBlur={()=>setFocus(false)} type='text' onChange={(e)=>{searchPage(e.target.value)}} className={`${styles.page}`}  defaultValue={1}></input> <span>/{pageNation.length}</span> </>}
+    { !focus &&   <span onClick={()=>setFocus(true)}>{pageNumber+1}/{pageNation.length}</span> }
+        <button className={`bg-danger text-warning fw-bold ${styles.btn}`} onClick={nextPage}>{'>'}</button>
       </div>
 
       <ViewTable keys={keys} values={displayValue} deleteHandler={deleteHandler} modelHandler={openModel} />

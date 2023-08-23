@@ -3,6 +3,7 @@
     height: 100%;
    
 }
+
 input {-webkit-appearance: none; box-shadow: none !important; }
 :-webkit-autofill { color: #fff !important; }
 .actions{
@@ -53,6 +54,32 @@ input {-webkit-appearance: none; box-shadow: none !important; }
     height: 100%;
     border-bottom-color: #F8071B;
 }
+.page {
+    border:none;
+    outline: none;
+    box-shadow: none;
+    width:2%;
+    border-color: white;
+    border-width: 3px;
+    border-radius: 0px;
+    border-bottom-width: 3px !important;
+    height: 100%;
+    border-bottom-color: #F8071B !important;
+
+   
+}
+.page:focus{
+    outline: none;
+    box-shadow: none;
+    width: 2%;
+    border-color: white;
+    border-width: 3px;
+    border-radius: 0px;
+    border-bottom-width: 3px;
+    height: 100%;
+    border-bottom-color: #F8071B;
+}
+
 .navBar{
     display:flex;
     height: auto;

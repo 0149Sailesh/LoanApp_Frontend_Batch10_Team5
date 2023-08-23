@@ -21,7 +21,8 @@ export function ViewCustomerData() {
     const [deleted, setDeleted] = useState(true)
     const [viewModle, setViewModel] = useState(false);
     const [modelObj, setModelObj] = useState([])
-
+    const [pageNumber, setPageNumber]= useState(0);
+    const [pageNation, setPageNation]=useState([]);
     const empName = useRef('');
     const empGender = useRef('');
     const designation = useRef('');
@@ -37,7 +38,7 @@ export function ViewCustomerData() {
      //   console.log(res)
     }
 
-
+    const [focus , setFocus]  = useState(false)
     const [displayValue, setDisplayValue] = useState([])
     useEffect(async () => {
         const res = await GetAllEmployee();
@@ -49,7 +50,27 @@ export function ViewCustomerData() {
             f.date_of_Birth= new Date(Date.parse(r.date_of_Birth)).toDateString();
             fetchData.push(f);
         }
-        ObjectToArray(fetchData);
+        let pageArr=[];
+        let onepage=[];
+        let i=0;
+         for (let r of fetchData){
+             if(i===5){
+     
+               pageArr.push(onepage);
+               onepage=[];
+               onepage.push(r)
+               i=0;
+             }
+             else {
+               onepage.push(r);
+               i++;
+             }
+         }
+         if(onepage.length!==0){
+           pageArr.push(onepage);
+         }
+       setPageNation(pageArr)
+        ObjectToArray(pageArr[0]);
         setList(fetchData)
     }, [deleted]);
 
@@ -72,7 +93,28 @@ export function ViewCustomerData() {
 
         //console.log(res)
     }
-
+    function nextPage(){
+        if(pageNumber+1< pageNation.length){
+          
+          ObjectToArray(pageNation[pageNumber+1]);
+          setPageNumber(pageNumber+1);
+        }
+        else{
+          setPageNumber(0);
+          ObjectToArray(pageNation[0])
+        }
+      }
+      function previousPage(){
+        if(pageNumber-1>=0){
+          
+          ObjectToArray(pageNation[pageNumber-1]);
+          setPageNumber(pageNumber-1);
+        }
+        else{
+          setPageNumber(pageNation.length-1);
+          ObjectToArray(pageNation[pageNation.length-1])
+        }
+      }
     async function deleteHandler(id) {
        try{ let res = await DeleteEmployee(id);
        // console.log(res)
@@ -144,7 +186,38 @@ export function ViewCustomerData() {
       
 
       }
+      function searchPage(value){
+        let  val =  Number(value);
+         val--
+           if(val>=0 && val<pageNation.length){
+             ObjectToArray(pageNation[val]);
+             setPageNumber(val)
+           }
+           else{
+             if(value!=='')
+             toast.error('Enter Valid Page Number')
      
+             ObjectToArray(pageNation[0]);
+             setPageNumber(0)
+             
+           }
+       }
+       function searchPage(value){
+        let  val =  Number(value);
+         val--
+           if(val>=0 && val<pageNation.length){
+             ObjectToArray(pageNation[val]);
+             setPageNumber(val)
+           }
+           else{
+             if(value!=='')
+             toast.error('Enter Valid Page Number')
+     
+             ObjectToArray(pageNation[0]);
+             setPageNumber(0)
+             
+           }
+       }
     function editHandler() {
    
         return (
@@ -227,9 +300,11 @@ export function ViewCustomerData() {
                         placeholder='Search'
                     />
                 </InputGroup>
-                <button className={`bg-danger text-warning fw-bold ${styles.btn}`}>{'<'}</button>
-                <button className={`bg-danger text-warning fw-bold ${styles.btn}`}>{'>'}</button>
-            </div>
+                <button className={`bg-danger text-warning fw-bold ${styles.btn}`} onClick={previousPage}>{'<'}</button>
+       {focus && <> <input onTouchEndCapture={()=>setFocus(false)} onBlur={()=>setFocus(false)} type='text' onChange={(e)=>{searchPage(e.target.value)}} className={`${styles.page}`}  defaultValue={1}></input> <span>/{pageNation.length}</span> </>}
+    { !focus &&   <span onClick={()=>setFocus(true)}>{pageNumber+1}/{pageNation.length}</span> }
+        <button className={`bg-danger text-warning fw-bold ${styles.btn}`} onClick={nextPage}>{'>'}</button>
+      </div>
             <ViewTable keys={keys} modelHandler={openModel} values={displayValue} deleteHandler={deleteHandler} />
         </div>
     );
