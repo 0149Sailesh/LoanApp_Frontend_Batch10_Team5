@@ -104,13 +104,14 @@ function desHandler(e){
         console.log(employeeId)
         return employeeId
       }
+      
     const handleSubmit = async(e) => {
         e.preventDefault()
         console.log(e.target.empId.value)
         console.log(formData)
         try{
             let res = await ApplyLoan({
-                employee_Id: '12345',
+                employee_Id: GetEmployeeId(),
                 item_Category:formData.item_Category,
                 item_Description:formData.item_Description,
                 item_Value: formData.item_Valuation,
