@@ -61,6 +61,7 @@ function PrivateRoute({
   useEffect(async () => {
     console.log('hitting useeffect')
     if (localStorage.getItem('Token')) {
+      console.log("Item is found in localstorage")
       const res = await GetAdmin();
       console.log(res)
       if (res.status !== 204) {
@@ -76,11 +77,12 @@ function PrivateRoute({
           localStorage.clear()
           setLoggedIn(false)
         } else {
+         setLoggedIn(true)
           console.log("Role matches")
         }
       }
     } else {
-    
+      console.log("TOken not found")
       setLoggedIn(false);
     }
 

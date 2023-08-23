@@ -43,6 +43,7 @@ function LoanApply() {
       <select name="itemCategory" id="inputState" class="form-control">
         <option selected>Furniture</option>
         <option>Crockery</option>
+        <option>Electronics</option>
       </select>
     </div>
   </div>

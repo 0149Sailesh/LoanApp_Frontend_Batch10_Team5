@@ -95,13 +95,22 @@ function desHandler(e){
       setFormData({...formData, item_Description:arr[1], item_Valuation:arr[0]})
 
     }
+    const GetEmployeeId = ()=>{
+        let userDet = localStorage.getItem('user');
+        console.log(userDet)
+        userDet = JSON.parse(userDet);
+       
+        let employeeId = userDet.employee_Id;
+        console.log(employeeId)
+        return employeeId
+      }
     const handleSubmit = async(e) => {
         e.preventDefault()
         console.log(e.target.empId.value)
         console.log(formData)
         try{
             let res = await ApplyLoan({
-                employee_Id:'1234',
+                employee_Id: '12345',
                 item_Category:formData.item_Category,
                 item_Description:formData.item_Description,
                 item_Value: formData.item_Valuation,
@@ -111,7 +120,8 @@ function desHandler(e){
             toast.success('Application Successfully')
         }
         catch(e){
-            toast.error('You are totally wrong ')
+            toast.error('Invalid request ')
+            console.log(e)
         }
        
        
@@ -135,7 +145,7 @@ function desHandler(e){
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail4">Employee id</label>
-                            <input required type="text" name="empId" class="form-control" id="inputEmail4" placeholder="Employee id" />
+                            <input required value={GetEmployeeId()} type="text" name="empId" class="form-control" id="inputEmail4" placeholder="Employee id" />
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputState">Item Category</label>

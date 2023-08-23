@@ -24,7 +24,7 @@ function LoginNav() {
   return (
     <Navbar expand="lg" className="bg-danger text-white border-bottom border-5 border-warning ">
       <Container className="text-white">
-        <Navbar.Brand className='text-white fs-3 font-weight-bold' href="#home">Loan Admin Management Application</Navbar.Brand>
+        <Navbar.Brand className='text-white fs-3 font-weight-bold' href="#home">Loan Management Application</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto pr-10 text-white h-100 d-flex align-items-center mt-0  ">

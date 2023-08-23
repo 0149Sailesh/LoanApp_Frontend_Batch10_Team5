@@ -70,6 +70,7 @@ export function ViewItemsData() {
             <select defaultValue={modelState[2]} name="itemCategory" id="inputState" class="form-control">
               <option selected>Furniture</option>
               <option>Crockery</option>
+              <option>Electronics</option>
             </select>
           </div>
         </div>
