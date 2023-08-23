@@ -31,10 +31,16 @@ export function ViewAppliedLoans() {
     console.log("Fetch function called")
 
     const res = await GetEmployeeLoans(GetEmployeeId());
+    let fetchData=[];
+    for ( let r of res.data){
+      let f =r ;
+      f.card_Issue_Date= new Date(Date.parse(r.card_Issue_Date)).toDateString();
+      fetchData.push(f)
 
+    }
     console.log("Response values", res.data)
-    setGlobalValue(res.data)
-    ObjectToArray(res.data)
+    setGlobalValue(fetchData)
+    ObjectToArray(fetchData)
   }
 
   function openModel(val) {

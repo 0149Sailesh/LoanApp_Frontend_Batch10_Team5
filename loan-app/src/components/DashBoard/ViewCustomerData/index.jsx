@@ -34,16 +34,23 @@ export function ViewCustomerData() {
             res.push(Object.values(i));
         }
         setDisplayValue(res);
-        console.log(res)
+     //   console.log(res)
     }
 
 
     const [displayValue, setDisplayValue] = useState([])
     useEffect(async () => {
         const res = await GetAllEmployee();
-        console.log(res)
-        ObjectToArray(res.data);
-        setList(res.data)
+        console.log(res.data)
+        let fetchData=[]
+        for (let r of res.data){
+            let f= r;
+            f.date_of_Joining= new Date(Date.parse(r.date_of_Joining)).toDateString();
+            f.date_of_Birth= new Date(Date.parse(r.date_of_Birth)).toDateString();
+            fetchData.push(f);
+        }
+        ObjectToArray(fetchData);
+        setList(fetchData)
     }, [deleted]);
 
 
@@ -63,12 +70,12 @@ export function ViewCustomerData() {
             ObjectToArray(list);
         }
 
-        console.log(res)
+        //console.log(res)
     }
 
     async function deleteHandler(id) {
        try{ let res = await DeleteEmployee(id);
-        console.log(res)
+       // console.log(res)
         setDeleted(!deleted)
         toast.success('Deleted')
    }
@@ -123,9 +130,9 @@ export function ViewCustomerData() {
       // dob.current='';
       // // doj.current='';
       // department='';
-         console.log(res)
-  
-      console.log(formData)
+        console.log(res)
+  //
+    //  console.log(formData)
 
       setDeleted(!deleted)
       closeModel();

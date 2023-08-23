@@ -20,17 +20,17 @@ export function ViewItemsData() {
   const FetchAllItems = async () => {
     console.log("Fetch function called")
     const res = await GetAllItems();
-    console.log("Response values", res.data)
+   console.log("Response values", res.data)
     setGlobalValue(res.data)
     ObjectToArray(res.data)
   }
 
   const handleEdit = async (e) => {
-    console.log("Submitttinggggggg")
+  //  console.log("Submitttinggggggg")
     try {
-      console.log("try block")
+     // console.log("try block")
       e.preventDefault()
-      console.log('category', e.target.itemCategory.value )
+      //console.log('category', e.target.itemCategory.value )
       let formData = {
        item_Id:modelState[0],
         item_Category: e.target.itemCategory.value ,
@@ -39,7 +39,7 @@ export function ViewItemsData() {
         item_Make: e.target.itemMake.value,
         issue_Status: e.target.itemStatus.value,
       }
-      console.log("Form data is", formData)
+    //  console.log("Form data is", formData)
       let res = await EditItem(formData)
       toast.success('Item Edited Successfully')
       console.log(res)
@@ -120,7 +120,7 @@ export function ViewItemsData() {
       toast.success('Item deleted sucessfully!')
       FetchAllItems()
     } catch (e) {
-
+toast.error('Try again')
     }
 
 
@@ -133,7 +133,7 @@ export function ViewItemsData() {
     }
     setDisplayValue(res);
 
-    console.log(res)
+   // console.log(res)
   }
 
 
