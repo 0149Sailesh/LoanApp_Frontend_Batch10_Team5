@@ -23,6 +23,8 @@ export function ViewLoanTable() {
     const duration = useRef(0);
     const [viewModle, setViewModel] = useState(false)
     const [deleted, setDeleted] = useState(false)
+    const [pageNumber, setPageNumber] = useState(0);
+    const [pageNation, setPageNation] = useState([]);
     const [displayValue, setDisplayValue] = useState([])
     const [list, setList] = useState([])
 
@@ -39,10 +41,53 @@ export function ViewLoanTable() {
     useEffect(async () => {
         const res = await GetAllLoan();
         console.log(res)
-        ObjectToArray(res.data)
+        let pageArr = [];
+        let onepage = [];
+        let i = 0;
+        for (let r of res.data) {
+            if (i === 5) {
+
+                pageArr.push(onepage);
+                onepage = [];
+                onepage.push(r)
+                i = 0;
+            }
+            else {
+                onepage.push(r);
+                i++;
+            }
+        }
+        if (onepage.length !== 0) {
+            pageArr.push(onepage);
+        }
+
+        ObjectToArray(pageArr[0])
+        setPageNation(pageArr)
         setList(res.data)
     }, [deleted]);
+    function nextPage() {
+        if (pageNumber + 1 < pageNation.length) {
 
+            ObjectToArray(pageNation[pageNumber + 1]);
+            setPageNumber(pageNumber + 1);
+        }
+        else {
+            setPageNumber(0);
+            ObjectToArray(pageNation[0])
+        }
+    }
+    function previousPage() {
+        if (pageNumber - 1 >= 0) {
+
+            ObjectToArray(pageNation[pageNumber - 1]);
+            setPageNumber(pageNumber - 1);
+        }
+        else {
+            setPageNumber(pageNation.length - 1);
+            ObjectToArray(pageNation[pageNation.length - 1])
+        }
+    }
+    const [focus, setFocus] = useState(false)
 
     function search(query) {
         let res = [];
@@ -62,14 +107,30 @@ export function ViewLoanTable() {
 
         console.log(res)
     }
+    function searchPage(value) {
+        let val = Number(value);
+        val--
+        if (val >= 0 && val < pageNation.length) {
+            ObjectToArray(pageNation[val]);
+            setPageNumber(val)
+        }
+        else {
+            if (value !== '')
+                toast.error('Enter Valid Page Number')
 
-    async function deleteHandler(id) {
-       try{ let res = await DeleteLoan(id);
-        console.log(res)
-        setDeleted(!deleted)
-        toast.success("Deleted")
+            ObjectToArray(pageNation[0]);
+            setPageNumber(0)
+
+        }
     }
-        catch(e){
+    async function deleteHandler(id) {
+        try {
+            let res = await DeleteLoan(id);
+            console.log(res)
+            setDeleted(!deleted)
+            toast.success("Deleted")
+        }
+        catch (e) {
             toast.error('Try again')
         }
         // console.log(id)
@@ -86,36 +147,36 @@ export function ViewLoanTable() {
     async function handleSubmit(e) {
         e.preventDefault()
 
-        try{
-        let formData = {
-            loan_Id: modelObj[0],
-            loan_Type: '',
-            duration: ''
-        }
-      
-        if (typeof loanType.current === 'string' || loanType.current instanceof String) {
-            formData.loan_Type=loanType.current;
-        }
-        else{
-            formData.loan_Type='Furniture';
-        }
-        if (typeof duration.current === 'string' || duration.current instanceof String) {
-            formData.duration=duration.current;
-        }
-        else{
-            formData.duration=modelObj[2];
-        }
+        try {
+            let formData = {
+                loan_Id: modelObj[0],
+                loan_Type: '',
+                duration: ''
+            }
 
-        const res = await PutLoan(formData)
-        console.log(res);
-        console.log(formData)
-        setDeleted(!deleted)
-        closeModel()
-        toast.success("Edited Successfully")
-}
-catch(e){
-    toast.error("Invaild Data")
-}
+            if (typeof loanType.current === 'string' || loanType.current instanceof String) {
+                formData.loan_Type = loanType.current;
+            }
+            else {
+                formData.loan_Type = 'Furniture';
+            }
+            if (typeof duration.current === 'string' || duration.current instanceof String) {
+                formData.duration = duration.current;
+            }
+            else {
+                formData.duration = modelObj[2];
+            }
+
+            const res = await PutLoan(formData)
+            console.log(res);
+            console.log(formData)
+            setDeleted(!deleted)
+            closeModel()
+            toast.success("Edited Successfully")
+        }
+        catch (e) {
+            toast.error("Invaild Data")
+        }
     }
 
     function editComponent() {
@@ -156,7 +217,7 @@ catch(e){
     return (
         <div className='container'>
             {viewModle && <LocalModel childComponent={editComponent} heading={`Edit model for Loan Card: ${modelObj[0]}`}></LocalModel>}
-            <ToastContainer/>
+            <ToastContainer />
             <h1 className={`r text-warning ${styles.head}`}>Loan Data</h1>
             <div className={styles.navBar} >
 
@@ -167,8 +228,10 @@ catch(e){
                         placeholder='Search'
                     />
                 </InputGroup>
-                <button className={`bg-danger text-warning fw-bold ${styles.btn}`}>{'<'}</button>
-                <button className={`bg-danger text-warning fw-bold ${styles.btn}`}>{'>'}</button>
+                <button className={`bg-danger text-warning fw-bold ${styles.btn}`} onClick={previousPage}>{'<'}</button>
+                {focus && <> <input onTouchEndCapture={() => setFocus(false)} onBlur={() => setFocus(false)} type='text' onChange={(e) => { searchPage(e.target.value) }} className={`${styles.page}`} defaultValue={1}></input> <span>/{pageNation.length}</span> </>}
+                {!focus && <span onClick={() => setFocus(true)}>{pageNumber + 1}/{pageNation.length}</span>}
+                <button className={`bg-danger text-warning fw-bold ${styles.btn}`} onClick={nextPage}>{'>'}</button>
             </div>
 
             <ViewTable keys={keys} values={displayValue} deleteHandler={deleteHandler} modelHandler={openModel} />
