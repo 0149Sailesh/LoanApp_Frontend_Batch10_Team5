@@ -88,7 +88,7 @@ function LoginPage() {
               <h3>Login</h3>
               <div className="form-group">
                 <label for="exampleInputEmail1">Username</label>
-                <input name="userName" required type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+                <input name="userName" required type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter username" />
                 <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
               </div>
               <div className="form-group">

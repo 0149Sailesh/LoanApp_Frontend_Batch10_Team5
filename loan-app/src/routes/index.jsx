@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,  } from 'react';
 import {
   BrowserRouter as Router, Switch, Route, Redirect
 } from 'react-router-dom';
@@ -7,7 +7,9 @@ import { publicRoutes, privateRoutes } from './routes';
 import { ScrollToTopController } from '../components/ScrollToTopController';
 import { GetAdmin } from '../components/request';
 import { Error404 } from '../components/Error/404';
+import { useHistory } from "react-router-dom";
 export function Routes() {
+  
   return (
     
     <Router>
@@ -29,6 +31,7 @@ export function Routes() {
   );
 }
 function Switches() {
+  const history = useHistory();
   return (
     <Switch>
       {publicRoutes.map((route) => (
@@ -57,12 +60,13 @@ function Switches() {
 function PrivateRoute({
   children, exact, path, role
 }) {
+  const history= useHistory()
   const [loggedIn, setLoggedIn] = useState(true);
   useEffect(async () => {
     console.log('hitting useeffect')
     if (localStorage.getItem('Token')) {
       console.log("Item is found in localstorage")
-      const res = await GetAdmin();
+    try{  const res = await GetAdmin();
       console.log(res)
       if (res.status !== 204) {
         console.log('hitting false')
@@ -80,6 +84,10 @@ function PrivateRoute({
          setLoggedIn(true)
           console.log("Role matches")
         }
+      }}
+      catch(e){
+        localStorage.clear();
+    history.push('/')
       }
     } else {
       console.log("TOken not found")
