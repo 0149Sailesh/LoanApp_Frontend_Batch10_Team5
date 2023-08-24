@@ -10,11 +10,11 @@ function SideMenuUser() {
   return (
     <div className={styles.sideMenu}>
       
-       <img width='80%' onClick={()=> routeFunc('/user/view-loan')} height="50" src='/icons/loan-ig.png' className={`rounded-circle ${styles.sideItems}`}></img>
+       <img width='60%' onClick={()=> routeFunc('/user/view-loan')} height="40"   src='/icons/loan-ig.png' className={`rounded-circle ${styles.sideItems}`}></img>
        <p className={`${styles.sideItemsText}`}>View Loans</p>
-       <img width='80%' onClick={()=> routeFunc('/user/apply-loan')} height="50" src='/icons/plus-white.png' className={`rounded-circle ${styles.sideItems}`}></img>
+       <img width='60%' onClick={()=> routeFunc('/user/apply-loan')} height="40" src='/icons/plus-white.png' className={`rounded-circle ${styles.sideItems}`}></img>
        <p className={`${styles.sideItemsText}`}>Apply Loan</p>
-       <img width='100%' onClick={()=> routeFunc('/user/view-items')} height="50" src='/icons/form-g.png' className={`rounded-circle ${styles.sideItems}`}></img>
+       <img width='100%' onClick={()=> routeFunc('/user/view-items')} height="40" src='/icons/form-g.png' className={`rounded-circle ${styles.sideItems}`}></img>
        <p className={`${styles.sideItemsText}`}>View Items</p>
     </div>
   )
