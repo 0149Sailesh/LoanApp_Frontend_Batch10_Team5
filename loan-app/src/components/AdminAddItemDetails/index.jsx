@@ -38,7 +38,9 @@ function AdminAddItemDetails() {
   return (
     <div style={{
 
-      height: '100vh',
+      height: 'auto',
+      minHeight:'100vh',
+      marginBottom:'5px',
       backgroundImage: "url(" + "/icons/newwf.png" + ")",
       backgroundPosition: 'top',
       backgroundSize: 'cover',

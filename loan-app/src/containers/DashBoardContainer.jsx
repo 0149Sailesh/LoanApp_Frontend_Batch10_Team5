@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card';
 import SideMenuAdmin from '../components/SideMenuAdmin';
 import GeneralNav from '../components/Navbar/GeneralNav';
 import { Footer } from '../components/Footer';
+import styles from './styles.module.css'
 export function DashBoardContainer() {
     return (
         <div >
@@ -18,7 +19,7 @@ export function DashBoardContainer() {
         }}>
             <GeneralNav></GeneralNav>
             <SideMenuAdmin></SideMenuAdmin>
-            <div className='mt-5 d-flex justify-content-center'>
+            <div className={`mt-5 d-flex justify-content-center d-col-md ${styles.d_col_md}`}>
                 <Card style={{ width: '18rem' }} className='p-4 m-4'>
                     <Card.Img variant="top" src="icons/customer.png" height={140} className='px-5' />
                     <Card.Body className='d-flex justify-content-center flex-column'>

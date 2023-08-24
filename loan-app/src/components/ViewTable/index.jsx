@@ -11,8 +11,8 @@ export function ViewTable({keys, values,deleteHandler,modelHandler, showButton=t
     // const [displayValue, setDisplayValue] = useState(value)
     const [item_id, setId] = useState('')
     return (
-        <div className='container'>
-            <Table striped bordered hover responsive='md'>
+        <div className={`container ${styles.medi}`}>
+            <Table striped bordered hover responsive='md' className={styles.medi}>
               
                 <thead>
                     <tr>
