@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import GeneralNav from "../Navbar/GeneralNav";
 import SideMenuAdmin from "../SideMenuAdmin";
 import styles from './style.module.css'
 import { AddItem } from "../request";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-
+import { GetAllLoan } from "../request";
 function AdminAddItemDetails() {
-  const [loanDetails, updateDetails] = useState({});
-
+  const [loanDetails, updateDetails] = useState([]);
+  useEffect( async()=>{
+    let res = await GetAllLoan();
+   
+    let arr=[];
+    for (let  r of res.data){
+      arr.push(r.loan_Type)
+    }
+    console.log(arr);
+    updateDetails(arr)
+  },[])
   const handleSubmit = async(e) => {
     console.log("Submitttinggggggg")
     try{
@@ -61,9 +70,8 @@ function AdminAddItemDetails() {
             <div class="form-group col-md-6">
               <label for="inputState">Item Category</label>
               <select name="itemCategory" id="inputState" class="form-control">
-                <option selected>Furniture</option>
-                <option>Crockery</option>
-                <option>Electronics</option>
+              
+                {loanDetails.map((i)=><option value={i}>{i}</option>)}
               </select>
             </div>
           </div>
@@ -85,7 +93,7 @@ function AdminAddItemDetails() {
           <div class="row">
             <div class="form-group col-md-6">
               <label for="inputCity">Item value</label>
-              <input required type="text" name="itemValue" class="form-control" id="inputCity" />
+              <input required type="text" name="itemValue" placeholder="Item Value" class="form-control" id="inputCity" />
             </div>
             <div class="form-group col-md-6">
               <label for="inputState2">Item Make</label>

@@ -60,18 +60,15 @@ catch(e){
             <br></br>
             <div class="form-group">
               <label for="inputState">Loan Type</label>
-              <select name="loanType" id="inputState" class="form-control" ref={loanType} onChange={(e)=>loanType.current=e.target.value}>
-                <option value={'Furniture'} selected>Furniture</option>
-                <option value={'Crockery'}>Crockery</option>
-                <option value={'Electronics'}>Electronics</option>
-              </select>
+             
+               <input type="text" placeholder="Loan Type"  name="loanType" id="inputState" class="form-control" ref={loanType} onChange={(e)=>loanType.current=e.target.value}></input>
             </div>
           </div>
           <br></br>
           <div class="row">
             <div class="form-group col-md-12 justify-content-center">
               <label for="inputAddress">Duration</label>
-              <input required type="number" name="duration" class="form-control" id="inputAddress" placeholder="1" ref={duration} onChange={(e)=>duration.current=e.target.value} />
+              <input required type="number" name="duration" class="form-control" id="inputAddress" placeholder="Duration" ref={duration} onChange={(e)=>duration.current=e.target.value} />
             </div>
           </div>
 
