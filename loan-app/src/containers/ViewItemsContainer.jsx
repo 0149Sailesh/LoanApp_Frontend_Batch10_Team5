@@ -7,8 +7,9 @@ export function ViewItemsContainer() {
   return (
     <div>
       <LoginNav/>
-      <ViewItemsData/>
       <SideMenuAdmin/>
+      <ViewItemsData/>
+     
       <Footer/>
     </div>
   );

@@ -8,8 +8,9 @@ export function ViewCustomerContainer() {
   return (
     <div>
       <LoginNav/>
-      <ViewCustomerData/>
       <SideMenuAdmin/>
+      <ViewCustomerData/>
+      
       <Footer/>
     </div>
   );

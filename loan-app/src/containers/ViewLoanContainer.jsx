@@ -7,8 +7,9 @@ export function ViewLoanContainer() {
   return (
     <div>
       <LoginNav/>
-      <ViewLoanTable/>
       <SideMenuAdmin/>
+      <ViewLoanTable/>
+     
       <Footer/>
     </div>
   );

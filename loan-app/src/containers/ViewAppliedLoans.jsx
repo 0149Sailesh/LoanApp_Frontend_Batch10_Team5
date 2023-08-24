@@ -8,8 +8,9 @@ export function ViewAppliedLoansContainer() {
   return (
     <div>
       <LoginNav/>
-      <ViewAppliedLoans/>
       <SideMenuUser/>
+      <ViewAppliedLoans/>
+      
       <Footer/>
     </div>
   );

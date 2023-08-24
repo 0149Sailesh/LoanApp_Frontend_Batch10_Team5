@@ -8,8 +8,9 @@ export function ViewPurchasedItemsContainer() {
   return (
     <div>
       <LoginNav/>
+        <SideMenuUser/>
       <ViewPurchasedItems/>
-      <SideMenuUser/>
+    
       <Footer/>
     </div>
   );

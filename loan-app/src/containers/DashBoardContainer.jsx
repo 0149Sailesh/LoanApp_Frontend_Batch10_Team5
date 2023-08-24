@@ -8,14 +8,16 @@ export function DashBoardContainer() {
     return (
         <div >
         <div style={{
-            height: '100vh',
+            height: 'auto',
+            minHeight:'100vh',
             backgroundImage: "url(" + "/icons/newwf.png" + ")",
             backgroundPosition: 'top',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
-            overflow:'auto'
+            overflow:'hidden'
         }}>
             <GeneralNav></GeneralNav>
+            <SideMenuAdmin></SideMenuAdmin>
             <div className='mt-5 d-flex justify-content-center'>
                 <Card style={{ width: '18rem' }} className='p-4 m-4'>
                     <Card.Img variant="top" src="icons/customer.png" height={140} className='px-5' />
@@ -59,7 +61,7 @@ export function DashBoardContainer() {
                         </div>
                     </Card.Body>
                 </Card>
-                <SideMenuAdmin></SideMenuAdmin>
+                
 
             </div>
         

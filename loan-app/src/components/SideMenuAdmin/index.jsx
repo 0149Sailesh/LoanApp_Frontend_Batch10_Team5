@@ -8,6 +8,7 @@ function SideMenuAdmin() {
     history.push(url)
   }
   return (
+    <>
     <div className={styles.sideMenu}>
       
        <img width='70%' onClick={()=> routeFunc('/view-customers')} height="40" src='/icons/loan-ig.png' className={`rounded-circle ${styles.sideItems}`}></img>
@@ -23,6 +24,15 @@ function SideMenuAdmin() {
        <img width='60%' onClick={()=> routeFunc('/admin-AddItemDetails')} height="40" src='icons/plus-white.png' className={`rounded-circle ${styles.sideItems}`}></img>
        <p className={`${styles.sideItemsText}`}>Add Items</p>
     </div>
+  <div className={styles.resMenu}>
+       <p style={{cursor:'pointer'}} onClick={()=> routeFunc('/view-customers')} className={`${styles.sideItemsText}`}>View Customer</p>
+       <p  style={{cursor:'pointer'}} onClick={()=> routeFunc('/admin-AddCustomerData')} className={`${styles.sideItemsText}`}>Add Customer</p>
+       <p style={{cursor:'pointer'}}  onClick={()=> routeFunc('/view-loan')} className={`${styles.sideItemsText}`}>View Loan</p>
+       <p style={{cursor:'pointer'}} onClick={()=> routeFunc('/admin-AddLoanCard')} className={`${styles.sideItemsText}`}>Add Loans</p>
+       <p style={{cursor:'pointer'}} onClick={()=> routeFunc('/view-items')} className={`${styles.sideItemsText}`}>View Items</p>
+       <p  style={{cursor:'pointer'}} onClick={()=> routeFunc('/admin-AddItemDetails')} className={`${styles.sideItemsText}`}>Add Items</p>
+  </div>
+    </>
   )
 }
 
