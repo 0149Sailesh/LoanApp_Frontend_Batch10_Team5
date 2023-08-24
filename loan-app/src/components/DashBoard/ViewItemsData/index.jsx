@@ -12,9 +12,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LocalModel from '../../Model';
 import { EditItem } from '../../request';
+import { GetAllLoan } from '../../request';
+
 import Button from 'react-bootstrap/Button';
 let keys = ['Item ID', 'Descrption', 'Status', 'Make', 'Category', 'Valuation', 'Actions']
 export function ViewItemsData() {
+  const [loanType , setLoanType]=useState([])
   const [modelState, setModelState] = useState({})
   const [viewModle, setViewModel] = useState(false)
   const [pageNumber, setPageNumber]= useState(0);
@@ -42,6 +45,12 @@ export function ViewItemsData() {
     if(onepage.length!==0){
       pageArr.push(onepage);
     }
+   let res2 = await GetAllLoan();
+   let arr=[];
+   for (let  r of res2.data){
+     arr.push(r.loan_Type)
+   }
+   setLoanType(arr)
     setPageNation(pageArr);
     setGlobalValue(res.data)
     ObjectToArray(pageArr[0])
@@ -90,9 +99,10 @@ export function ViewItemsData() {
           <div class="form-group col-md-12">
             <label for="inputState">Item Category</label>
             <select defaultValue={modelState[2]} name="itemCategory" id="inputState" class="form-control">
-              <option selected>Furniture</option>
+              {/* <option selected>Furniture</option>
               <option>Crockery</option>
-              <option>Electronics</option>
+              <option>Electronics</option> */}
+              {loanType.map((i)=><option value={i}>{i}</option>)}
             </select>
           </div>
         </div>
