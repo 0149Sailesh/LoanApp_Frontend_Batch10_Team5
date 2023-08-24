@@ -34,12 +34,12 @@ const deleteHeader = () => {
 
     return header;
 }
-const getUserName = () => {
-    let user = JSON.parse(localStorage.getItem('user'))
-    return user.username;
-}
+// const getUserName = () => {
+//     let user = JSON.parse(localStorage.getItem('user'))
+//     return user.username;
+// }
 // Test route
-export const GetAdmin = () => axios.get(GET_ADMIN, getHeader(), { params: { id: getUserName() } });
+export const GetAdmin = () => axios.get(GET_ADMIN, getHeader());
 export const AdminLogin = (data) => axios.post(ADMIN_LOGIN, data)
 export const EmpRegister = (data) => axios.post(EMPLOYEE_REGISTER, data, getHeader());
 export const LoanRegister = (data) => axios.post(LOAN_REGISTER, data, getHeader());
