@@ -19,3 +19,17 @@
     margin-left: 75px;
     padding: 30px;
 }
+@media (max-width:800px){
+    .flexItems{
+        display: none;
+    }
+    .loginForm{
+        margin-left: 0px;
+    }
+    .loginContainer{
+        width: 100%;
+        height: auto;
+        justify-content: center;
+    }
+    
+}

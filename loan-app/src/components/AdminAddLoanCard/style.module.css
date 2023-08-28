@@ -18,6 +18,11 @@ button{
 button{
     margin-top: 30px;
 }
+@media (max-width:800px){
+    .formContainer{
+     width: 90%;
+    }
+ }
 
 .form-group{
     margin-top: 30px;

@@ -5,6 +5,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { useState } from 'react';
+import styles from'./style.module.css'
 function LoginNav() {
   const history = useHistory();
   const [loggedIn, setLoggedIn] = useState(true);
@@ -24,7 +25,7 @@ function LoginNav() {
   return (
     <Navbar expand="lg" className="bg-danger text-white border-bottom border-5 border-warning ">
       <Container className="text-white">
-        <Navbar.Brand className='text-white fs-3 font-weight-bold' href="#home">Loan Management Application</Navbar.Brand>
+        <Navbar.Brand className={`  text-white fs-4 font-weight-semiboldd`} href="#home">Loan Management Application</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto pr-10 text-white h-100 d-flex align-items-center mt-0  ">

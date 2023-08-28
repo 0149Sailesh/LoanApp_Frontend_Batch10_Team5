@@ -1,0 +1,9 @@
+.header{
+color:yellow
+}
+@media (max-width:700px){
+    .header{
+        font-size: 0.7rem;
+        color: black;
+    }
+}
