@@ -68,7 +68,7 @@ function PrivateRoute({
       console.log("Item is found in localstorage")
     try{  const res = await GetAdmin();
       console.log(res)
-      if (res.status !== 204) {
+      if (res.status !== 200) {
         console.log('hitting false')
         setLoggedIn(false);
       }
