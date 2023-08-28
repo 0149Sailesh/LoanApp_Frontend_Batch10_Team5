@@ -87,6 +87,7 @@ export function ViewItemsData() {
   function openModel(val) {
     setModelState(val);
     setViewModel(true)
+    console.log(val)
   }
   function closeModel() {
     setViewModel(false);
@@ -98,7 +99,7 @@ export function ViewItemsData() {
          
           <div class="form-group col-md-12">
             <label for="inputState">Item Category</label>
-            <select defaultValue={modelState[2]} name="itemCategory" id="inputState" class="form-control">
+            <select defaultValue={modelState[4]} name="itemCategory" id="inputState" class="form-control">
               {/* <option selected>Furniture</option>
               <option>Crockery</option>
               <option>Electronics</option> */}
@@ -110,11 +111,11 @@ export function ViewItemsData() {
         <div class="row">
           <div class="form-group col-md-9">
             <label for="inputAddress">Item Description</label>
-            <input defaultValue={modelState[3]} required type="text" name="itemDescription" class="form-control" id="inputAddress" placeholder="Item description" />
+            <input defaultValue={modelState[1]} required type="text" name="itemDescription" class="form-control" id="inputAddress" placeholder="Item description" />
           </div>
           <div class="form-group col-md-3">
             <label for="inputState2">Status</label>
-            <select defaultValue={modelState[4]} id="inputState2" name="itemStatus" class="form-control">
+            <select defaultValue={modelState[2]} id="inputState2" name="itemStatus" class="form-control">
               <option selected>Y</option>
               <option>N</option>
             </select>
@@ -128,7 +129,7 @@ export function ViewItemsData() {
           </div>
           <div class="form-group col-md-6">
             <label for="inputState2">Item Make</label>
-            <select defaultValue={modelState[6]} id="inputState2" name="itemMake" class="form-control">
+            <select defaultValue={modelState[3]} id="inputState2" name="itemMake" class="form-control">
               <option selected>Opt1</option>
               <option>Opt2</option>
             </select>

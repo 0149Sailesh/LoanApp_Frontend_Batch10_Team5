@@ -40,3 +40,10 @@
     height: 85%;
 
 }
+@media (max-width:800px){
+    .body{
+        height: auto;
+        margin-bottom: 5px;
+        width: 95%;
+    }
+}
