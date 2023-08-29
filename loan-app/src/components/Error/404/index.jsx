@@ -12,7 +12,7 @@ export function Error404() {
 
                 </div>
             </div>
-            <img src='icons/404.gif' width={500} />
+            <img className={styles.img} src='icons/404.gif' width={500} />
         </div>
     );
 }
